@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace News.Models
+namespace News.Models 
 {
-    public class User
+    public class UserModel
     {
         public int UserID { get; set; }
-        public int HashPassword { get; set; }
+        public string UserName { get; set; }
+        public string HashPassword { get; set; }
     }
 }

@@ -5,8 +5,13 @@
 <div class="carousel slider" id="carouselControls" data-ride="carousel" >
     <div class="carousel-inner">
         <div class="carousel"-item>
-
-
+           @{
+               foreach (var item in Model)
+               {
+                  <h2>@item.UserName</h2>
+               }
+            }
+            
         </div>
     </div>
 </div>
