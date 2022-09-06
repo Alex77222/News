@@ -13,6 +13,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Business\" />
+    <Folder Include="Views\RegistrationController\" />
   </ItemGroup>
 
 </Project>
