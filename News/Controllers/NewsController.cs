@@ -20,7 +20,7 @@ namespace News.Controllers
                     NewsText = "Какойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IP"
                 },
                  new NewsModel
-                {
+        {
                      NewsID=2,
                     NewsHeadr = "Soft",
                     NewsText = " Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft "
