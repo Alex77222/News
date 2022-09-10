@@ -10,5 +10,6 @@ namespace News.Models
         public int UserID { get; set; }
         public string UserName { get; set; }
         public string HashPassword { get; set; }
+        public string UserFoto { get; set; }
     }
 }
