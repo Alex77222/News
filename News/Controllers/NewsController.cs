@@ -9,9 +9,23 @@ namespace News.Controllers
 {
     public class NewsController : Controller
     {
-        public IActionResult Index()
+        public IActionResult News()
         {
-            return View(new List<NewsModel>);
+            return View(new List<NewsModel>
+            {
+                new NewsModel
+                {
+                    NewsID =1,
+                    NewsHeadr = " TCP/IP",
+                    NewsText = "Какойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IP"
+                },
+                 new NewsModel
+                {
+                     NewsID=2,
+                    NewsHeadr = "Soft",
+                    NewsText = " Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft "
+                }
+            });
         }
     }
 }
