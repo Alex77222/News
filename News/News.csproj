@@ -8,19 +8,15 @@
     <Compile Remove="Business\**" />
     <Compile Remove="Data\**" />
     <Compile Remove="Views\RegistrationController\**" />
-    <Compile Remove="wwwroot\**" />
     <Content Remove="Business\**" />
     <Content Remove="Data\**" />
     <Content Remove="Views\RegistrationController\**" />
-    <Content Remove="wwwroot\**" />
     <EmbeddedResource Remove="Business\**" />
     <EmbeddedResource Remove="Data\**" />
     <EmbeddedResource Remove="Views\RegistrationController\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
     <None Remove="Business\**" />
     <None Remove="Data\**" />
     <None Remove="Views\RegistrationController\**" />
-    <None Remove="wwwroot\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,6 +71,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
