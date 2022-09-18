@@ -13,11 +13,12 @@
     <!-- Навигационная панель-->
     <nav class="navbar navbar-expand-xl navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false">
+                <span class="navbar-toggler-icon "></span>
+            </button>
             <div class="navbar-header">
                 <a href="" class="navbar-brand">SYSTEMNEWS</a>
-                <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
             </div>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mr-2 mb-2">
@@ -39,7 +40,7 @@
         </div>
     </nav>
     <main>
-        <div class="container body-content">
+        <div class="container-fluid body-content">
             @RenderBody()
         </div>
     </main>

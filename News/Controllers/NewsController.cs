@@ -11,21 +11,15 @@ namespace News.Controllers
     {
         public IActionResult News()
         {
-            return View(new List<NewsModel>
-            {
+            return View(
+            
                 new NewsModel
                 {
                     NewsID =1,
                     NewsHeadr = " TCP/IP",
-                    NewsText = "Какойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IPКакойто текст про TCp/IP"
-                },
-                 new NewsModel
-        {
-                     NewsID=2,
-                    NewsHeadr = "Soft",
-                    NewsText = " Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft Какойто текст про Soft "
+                    NewsText = "Что такое TCP/IPПроизошло наименование протокола от сокращения двух английских понятий – Transmission Control Protocol и Internet Protocol.Набор правил, входящий в него, позволяет обрабатывать как сквозную передачу данных,так и другие детали этого механизма.Сюда входит формирование пакетов,способ их отправки получения, маршрутизации, распаковки для передачи программному обеспечению."
                 }
-            });
+            );
         }
     }
 }
