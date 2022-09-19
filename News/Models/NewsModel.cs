@@ -7,8 +7,8 @@ namespace News.Models
 {
     public class NewsModel
     {
-        public int NewsID { get; set; }
+        public int NewsId { get; set; }
         public string NewsText { get; set; }
-        public string NewsHeadr { get; set; }
+        public string NewsHeader { get; set; }
     }
 }

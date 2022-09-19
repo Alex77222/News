@@ -7,9 +7,9 @@ namespace News.Models
 {
     public class UserModel
     {
-        public int UserID { get; set; }
+        public int UserId { get; set; }
         public string UserName { get; set; }
         public string HashPassword { get; set; }
-        public string UserFoto { get; set; }
+        public string UserPic { get; set; }
     }
 }
