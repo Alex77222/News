@@ -6,16 +6,12 @@
 
   <ItemGroup>
     <Compile Remove="Business\**" />
-    <Compile Remove="Data\**" />
     <Compile Remove="Views\RegistrationController\**" />
     <Content Remove="Business\**" />
-    <Content Remove="Data\**" />
     <Content Remove="Views\RegistrationController\**" />
     <EmbeddedResource Remove="Business\**" />
-    <EmbeddedResource Remove="Data\**" />
     <EmbeddedResource Remove="Views\RegistrationController\**" />
     <None Remove="Business\**" />
-    <None Remove="Data\**" />
     <None Remove="Views\RegistrationController\**" />
   </ItemGroup>
 
@@ -75,6 +71,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

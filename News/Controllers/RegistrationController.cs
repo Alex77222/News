@@ -13,5 +13,12 @@ namespace News.Controllers
             
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Index(string Login, string Password)
+        {
+
+            return View();
+        }
     }
 }
