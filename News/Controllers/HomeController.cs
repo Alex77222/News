@@ -15,8 +15,9 @@ namespace News.Controllers
             {
                 new UserModel
                 {
-                    UserID =2,
-                    UserName="Admin"
+                    UserID = 2,
+                    UserName="Admin",
+                    
                 },
                 new UserModel
                 {

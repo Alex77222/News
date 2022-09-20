@@ -1,17 +1,56 @@
-﻿
-@{
-    Layout = "_Layout";
+﻿@{
+    ViewData["Title"] = "Index";
 }
-<div class="carousel slider" id="carouselControls" data-ride="carousel" >
-    <div class="carousel-inner">
-        <div class="carousel"-item>
-           @{
-               foreach (var item in Model)
-               {
-                  <h2>@item.UserName</h2>
-               }
-            }
-            
+
+
+<div class="container-fluid container-xxl">
+@{
+    foreach (var item in Model)
+    {
+    <div class="card ">
+        <div class="card-header">
+            @item.UserID
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <h5 class="card-title">@item.UserName</h5>
+                <div class="col-5 col-xxl-2 col-xl-2 col-lg-2 col-">
+                    <img src="~/images/1.jpg" class="rounded float-start" alt="Sample Photo" width="150px" />
+                </div>
+                <div class="col-6">
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
         </div>
     </div>
+            }
+            }
 </div>
+
+       
+
+        @*<div class="carousel slider" id="carouselControls" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel" -item>
+
+                        @{
+                            foreach (var item in Model)
+                            {
+                                    <div class="card">
+                                                    <img src="~/images/1.jpg" alt="Sample Photo" width="300px" />
+                                        <h5 class="card-header">@item.UserID</h5>
+                                        <div class="card-body">
+                                            <h5 class="card-title">@item.UserName</h5>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                            <a href=" " class="btn btn-primary">Подробнее</a>
+                                        </div>
+                                    </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        *@
