@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace News.Controllers
 {
-    public class NewsController : Controller
+    public class ArticleController : Controller
     {
-        public IActionResult News()
+        public IActionResult Article()
         {
             return View(
             
-                new NewsModel
+                new ArticleModel
                 {
-                    NewsID =1,
-                    NewsHeadr = " TCP/IP",
+                    NewsId =1,
+                    NewsHeader = " TCP/IP",
                     NewsText = "Что такое TCP/IPПроизошло наименование протокола от сокращения двух английских понятий – Transmission Control Protocol и Internet Protocol.Набор правил, входящий в него, позволяет обрабатывать как сквозную передачу данных,так и другие детали этого механизма.Сюда входит формирование пакетов,способ их отправки получения, маршрутизации, распаковки для передачи программному обеспечению."
                 }
             );

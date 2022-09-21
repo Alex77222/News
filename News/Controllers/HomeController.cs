@@ -15,13 +15,13 @@ namespace News.Controllers
             {
                 new UserModel
                 {
-                    UserID = 2,
+                    UserId = 2,
                     UserName="Admin",
                     
                 },
                 new UserModel
                 {
-                    UserID=1,
+                    UserId=1,
                     UserName="Fedor"
                 }
             });

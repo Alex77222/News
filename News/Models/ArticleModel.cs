@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace News.Models
 {
-    public class NewsModel
+    public class ArticleModel
     {
         public int NewsId { get; set; }
         public string NewsText { get; set; }
