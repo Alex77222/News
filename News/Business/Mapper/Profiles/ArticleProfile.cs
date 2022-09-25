@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using News.Models;
 using News.Data.Entities;
+using News.Models;
 
 namespace News.Business.Mapper.Profiles
 {
@@ -8,10 +8,10 @@ namespace News.Business.Mapper.Profiles
     {
         public ArticleProfile()
         {
-            CreateMap<New,ArticleModel>()
-                .ForMember(memberOption  opt
-                )
-                
-
+            CreateMap<New, ArticleModel>()
+                .ForMember(dest => dest.NewsId, opt => opt.MapFrom(x => x.Id))
+                .ForMember(dest => dest.NewsHeader, opt => opt.MapFrom(x => x.Name))
+                .ForMember(dest => dest.NewsText, opt => opt.MapFrom(x => x.Body));
+    }
     }
 }

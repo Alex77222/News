@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using News.Data.Entities;
-
+using News.Data.Interfaces;
 
 namespace News.Data.Entities
 {
-    public class ArticleRepository
+    public class ArticleRepository:IArticleRepository
     {
-        public List<New> GetAllAricle()
+        public async Task<IList<New>> GetListAsync()
         {
-            return new List<New>
+           var news= new List<New>
             {
                 new New
                 {
@@ -34,6 +32,7 @@ namespace News.Data.Entities
 
 
             };
+            return news;
         }
     }
 }

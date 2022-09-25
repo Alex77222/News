@@ -68,8 +68,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Business\Services\Interfaces\" />
-    <Folder Include="Data\Interfaces\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
