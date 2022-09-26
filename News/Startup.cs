@@ -4,8 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using News.Business.Mapper.Profiles;
 using News.Business.Services;
 using News.Business.Services.Interfaces;
-using News.Data.Entities;
 using News.Data.Interfaces;
+using News.Data.Repositories;
 
 namespace News
 {
@@ -16,7 +16,7 @@ namespace News
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddAutoMapper(typeof(ArticleProfile)); 
+            services.AddAutoMapper(typeof(Startup)); 
             services.AddScoped<IArticleRepository,ArticleRepository>();
             services.AddScoped<IArticleService,ArticleService>();
             services.AddMvc();
