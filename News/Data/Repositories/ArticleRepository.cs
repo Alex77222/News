@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using News.Data.Entities;
 using News.Data.Interfaces;
 
-namespace News.Data.Entities
+
+namespace News.Data.Repositories
 {
     public class ArticleRepository:IArticleRepository
     {
-        public async Task<IList<New>> GetListAsync()
+        public async Task<IList<Article>> GetListAsync()
         {
-           var news= new List<New>
+           var articles = new List<Article>
             {
-                new New
+                new Article
                 {
                     Id =1,
                     Body = "Text in body lalalalal",
                     Name="Article 1"
                 },
-                 new New
+                 new Article
                 {
                     Id =2,
                     Body = "Text in body 2 lalalgegegegegegalal",
                     Name="Article 2"
                 },
-                   new New
+                   new Article
                 {
                     Id =3,
                     Body = "Text in body 3 lalalgegegpypypyyppegegegalal",
@@ -32,7 +34,7 @@ namespace News.Data.Entities
 
 
             };
-            return news;
+            return await Task.FromResult(articles); 
         }
     }
 }

@@ -8,6 +8,6 @@ namespace News.Data.Interfaces
 {
     public interface IArticleRepository
     {
-        public Task<IList<New>> GetListAsync();
+        public Task<IList<Article>> GetListAsync();
     }
 }

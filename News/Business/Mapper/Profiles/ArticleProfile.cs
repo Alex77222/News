@@ -8,7 +8,7 @@ namespace News.Business.Mapper.Profiles
     {
         public ArticleProfile()
         {
-            CreateMap<New, ArticleModel>()
+            CreateMap<Article, ArticleModel>()
                 .ForMember(dest => dest.NewsId, opt => opt.MapFrom(x => x.Id))
                 .ForMember(dest => dest.NewsHeader, opt => opt.MapFrom(x => x.Name))
                 .ForMember(dest => dest.NewsText, opt => opt.MapFrom(x => x.Body));

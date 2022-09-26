@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace News.Data.Entities
 {
-    public class New
+    public class Article
     {
         public int Id { get; set; }
         public string Name { get; set; }
