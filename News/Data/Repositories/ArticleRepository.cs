@@ -1,17 +1,18 @@
-﻿using System;
+﻿using News.Data.Entities;
+using News.Data.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using News.Data.Entities;
-using News.Data.Interfaces;
-
+using System.Linq;
 
 namespace News.Data.Repositories
 {
-    public class ArticleRepository:IArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
-        public async Task<IList<Article>> GetListAsync()
+        private List<Article> _articles;
+
+        public ArticleRepository()
         {
-           var articles = new List<Article>
+            _articles= new List<Article>()
             {
                 new Article
                 {
@@ -34,7 +35,16 @@ namespace News.Data.Repositories
 
 
             };
-            return await Task.FromResult(articles); 
+        }
+        public async Task<IList<Article>> GetListAsync()
+        {
+
+            return await Task.FromResult(_articles);
+        }
+
+        public async Task<Article> GetListByIdAsyncc(int Id)
+        {
+            return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == Id));
         }
     }
 }

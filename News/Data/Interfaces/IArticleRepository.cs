@@ -9,5 +9,6 @@ namespace News.Data.Interfaces
     public interface IArticleRepository
     {
         public Task<IList<Article>> GetListAsync();
+        public Task<Article> GetListByIdAsyncc(int Id);
     }
 }

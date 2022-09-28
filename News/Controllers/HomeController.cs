@@ -20,5 +20,7 @@ namespace News.Controllers
         {
             return View(await _aricleService.GetArticlesAsync());
         }
+
+       
     }
 }

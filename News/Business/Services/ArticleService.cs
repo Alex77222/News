@@ -25,8 +25,9 @@ namespace News.Business.Services
         }
         public async Task<IList<ArticleModel>> GetArticleByIdAsync(int Id)
         {
-            var articles = await _articleRepository.GetListAsync();
-            return _mapper.Map<List<ArticleModel>>(articles);
+            var article = await _articleRepository.GetListByIdAsyncc(Id);
+            
+            return _mapper.Map<List<ArticleModel>>(article);
 
         }
     }

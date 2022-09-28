@@ -33,7 +33,7 @@ namespace News
             {
             endpoints.MapControllerRoute(
                 name: "Default",
-                pattern: "{controller=Home}/{action=Index}");
+                pattern: "{controller=Home}/{action=Index}/{Id?}");
                   
             });
         }
