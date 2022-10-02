@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using News.Business.Mapper.Profiles;
+using News.Business.Services;
+using News.Business.Services.Interfaces;
+using News.Data.Interfaces;
+using News.Data.Repositories;
 
 namespace News
 {
@@ -16,19 +15,25 @@ namespace News
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAutoMapper(typeof(Startup)); 
+            services.AddScoped<IArticleRepository,ArticleRepository>();
+            services.AddScoped<IArticleService,ArticleService>();
             services.AddMvc();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             app.UseStaticFiles();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
             endpoints.MapControllerRoute(
                 name: "Default",
-                pattern: "{controller=Home}/{action=Index}");
+                pattern: "{controller=Home}/{action=Index}/{Id?}");
                   
             });
         }
