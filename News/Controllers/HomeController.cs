@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
 using News.Business.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace News.Controllers
 {
@@ -16,12 +15,10 @@ namespace News.Controllers
         {
             return View(await _aricleService.GetArticlesAsync());
         }
-        
+
         public async Task<IActionResult> Article(int Id)
         {
-
-            var news = await _aricleService.GetArticleByIdAsync(Id);
-            return View(news);
+            return View(await _aricleService.GetArticleByIdAsync(Id));
         }
     }
 
