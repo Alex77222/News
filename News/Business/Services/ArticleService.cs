@@ -23,11 +23,11 @@ namespace News.Business.Services
             return _mapper.Map<List<ArticleModel>>(articles);
 
         }
-        public async Task<IList<ArticleModel>> GetArticleByIdAsync(int Id)
+        public async Task<ArticleModel> GetArticleByIdAsync(int Id)
         {
-            var article = await _articleRepository.GetListByIdAsyncc(Id);
+            var article = await _articleRepository.GetListByIdAsync(Id);
             
-            return _mapper.Map<List<ArticleModel>>(article);
+            return _mapper.Map<ArticleModel>(article);
 
         }
     }

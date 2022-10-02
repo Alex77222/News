@@ -42,7 +42,7 @@ namespace News.Data.Repositories
             return await Task.FromResult(_articles);
         }
 
-        public async Task<Article> GetListByIdAsyncc(int Id)
+        public async Task<Article> GetListByIdAsync(int Id)
         {
             return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == Id));
         }

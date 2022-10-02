@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using News.Models;
-using News.Business.Services;
+
 using News.Business.Services.Interfaces;
 
 namespace News.Controllers
@@ -20,7 +16,14 @@ namespace News.Controllers
         {
             return View(await _aricleService.GetArticlesAsync());
         }
+        
+        public async Task<IActionResult> Article(int Id)
+        {
 
-       
+            var news = await _aricleService.GetArticleByIdAsync(Id);
+            return View(news);
+        }
     }
+
 }
+

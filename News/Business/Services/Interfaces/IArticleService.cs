@@ -9,7 +9,7 @@ namespace News.Business.Services.Interfaces
     public interface IArticleService
     {
         public Task<IList<ArticleModel>> GetArticlesAsync();
-        public Task<IList<ArticleModel>> GetArticleByIdAsync(int Id);
+        public Task<ArticleModel> GetArticleByIdAsync(int Id);
 
     }
 }
