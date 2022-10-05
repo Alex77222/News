@@ -5,3 +5,29 @@
 
 <h1>Admin</h1>
 
+
+
+<div class="container-fluid container-xxl">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="card ">
+                <div class="card-header">
+                    @item.UserId
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="card-title">@item.UserName</h5>
+                        <div class="col-5 col-xxl-2 col-xl-2 col-lg-2 col-">
+                            <img src="~/images/1.jpg" class="rounded float-start" alt="Sample Photo" width="150px" />
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
