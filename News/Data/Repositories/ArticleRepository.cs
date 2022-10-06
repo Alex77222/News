@@ -1,8 +1,8 @@
 ﻿using News.Data.Entities;
 using News.Data.Interfaces;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace News.Data.Repositories
 {
@@ -12,7 +12,7 @@ namespace News.Data.Repositories
 
         public ArticleRepository()
         {
-            _articles= new List<Article>()
+            _articles = new List<Article>()
             {
                 new Article
                 {
@@ -45,6 +45,14 @@ namespace News.Data.Repositories
         public async Task<Article> GetListByIdAsync(int Id)
         {
             return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == Id));
+        }
+
+        public async Task<IList<Article>> SaveChangesAsync(int Id, string Name, string Body)
+        {
+            var ar = _articles.FirstOrDefault(x => x.Id == Id);
+            ar.Name = Name;
+            ar.Body = Body;
+            return await Task.FromResult(_articles);
         }
     }
 }

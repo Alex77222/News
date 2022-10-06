@@ -19,9 +19,10 @@ namespace News.Controllers
         {
             return View(await _aricleService.GetArticleByIdAsync(Id));
         }
+        [HttpPost]
         public async Task<IActionResult> Edit(int NewsId,string NewsHeader,string NewsText)
         {
-            return View();
+            return View(await _aricleService.UpdateArticle(NewsId,NewsHeader,NewsText));
         }
     }
 }

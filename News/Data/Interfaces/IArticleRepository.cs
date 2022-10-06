@@ -10,5 +10,6 @@ namespace News.Data.Interfaces
     {
         public Task<IList<Article>> GetListAsync();
         public Task<Article> GetListByIdAsync(int Id);
+        public Task<IList<Article>> SaveChangesAsync(int Id, string Name, string Body);
     }
 }
