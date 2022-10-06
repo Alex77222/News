@@ -1,16 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using News.Business.Services.Interfaces;
 using System.Threading.Tasks;
 
 namespace News.Controllers
 {
     public class AdminController : Controller
     {
-        public IActionResult Admin()
+        private readonly IArticleService _aricleService;
+        public AdminController(IArticleService article)
         {
-            return View();
+            _aricleService = article;
+        }
+        public async Task<IActionResult> Admin()
+        {
+            return View(await _aricleService.GetArticlesAsync());
+        }
+        public async Task<IActionResult> Edit(int Id)
+        {
+            return View(await _aricleService.GetArticleByIdAsync(Id));
         }
     }
 }

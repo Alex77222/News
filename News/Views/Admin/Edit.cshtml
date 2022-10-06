@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="@Model.NewsId" type="hidden" />
+    <div>
+        <label class="text-center">Заголовок статьи</label>
+        <div>
+            <input asp-for="@Model.NewsHeader" />
+            <span asp-validation-for="@Model.NewsHeader"></span>
+        </div>
+    </div>
+        <div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Текст статьи</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6">@Model.NewsText</textarea>
+            </div>
+        </div>
+    <div>
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>
