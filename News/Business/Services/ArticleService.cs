@@ -36,5 +36,10 @@ namespace News.Business.Services
             var articles = await _articleRepository.SaveChangesAsync(model);
             return _mapper.Map<List<ArticleModel>>(articles);
         }
+        public async Task DeleteArticleByIdAsync(int Id)
+        {
+            await _articleRepository.DeleteListByIdAsync(Id);
+
+        }
     }
 }

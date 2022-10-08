@@ -58,5 +58,11 @@ namespace News.Data.Repositories
             _articles.Add(ar);
             return await Task.FromResult(_articles);
         }
+        public async Task DeleteListByIdAsync(int Id)
+        {
+            var ar = _articles.FirstOrDefault(x => x.Id == Id);
+            _articles.Remove(ar);
+            
+        }
     }
 }

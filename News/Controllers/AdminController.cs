@@ -16,6 +16,12 @@ namespace News.Controllers
         {
             return View(await _aricleService.GetArticlesAsync());
         }
+        
+        public async Task<IActionResult> Delete(int Id)
+        {
+           await _aricleService.DeleteArticleByIdAsync(Id);
+            return RedirectToAction("Admin");
+        }
         public async Task<IActionResult> Edit(int Id)
         {
             return View(await _aricleService.GetArticleByIdAsync(Id));
