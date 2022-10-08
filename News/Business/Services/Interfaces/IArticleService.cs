@@ -13,5 +13,6 @@ namespace News.Business.Services.Interfaces
         public Task<ArticleModel> GetArticleByIdAsync(int Id); 
         public Task<IList<ArticleModel>> UpdateArticle(ArticleModel model);
         public Task DeleteArticleByIdAsync(int Id);
+        public Task<IList<ArticleModel>> AddArticleAsync(ArticleModel model);
     }
 }

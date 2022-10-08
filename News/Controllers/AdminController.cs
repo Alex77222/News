@@ -16,10 +16,10 @@ namespace News.Controllers
         {
             return View(await _aricleService.GetArticlesAsync());
         }
-        
+
         public async Task<IActionResult> Delete(int Id)
         {
-           await _aricleService.DeleteArticleByIdAsync(Id);
+            await _aricleService.DeleteArticleByIdAsync(Id);
             return RedirectToAction("Admin");
         }
         public async Task<IActionResult> Edit(int Id)
@@ -31,6 +31,16 @@ namespace News.Controllers
         {
             await _aricleService.UpdateArticle(model);
             return RedirectToAction("Admin", await _aricleService.UpdateArticle(model));
+        }
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Add(ArticleModel model)
+        {
+            await _aricleService.AddArticleAsync(model);
+            return RedirectToAction("Admin", await _aricleService.AddArticleAsync(model));
         }
     }
 }

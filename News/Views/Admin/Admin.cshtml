@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Admin";
 }
+<a asp-controller="Admin" asp-action="Add" class="btn btn-success">Добавить статью</a>
 <div class="container-fluid container-xxl">
     @{
         foreach (var item in Model)
@@ -20,7 +21,7 @@
                             <p class="card-text">@item.NewsText</p>
                             <a asp-controller="Home" asp-action="Article" asp-route-id="@item.NewsId" class="btn btn-primary">Go somewhere</a>
                             <a asp-controller="Admin" asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-success">Изменить</a>
-                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.NewsId"  class="btn btn-danger">Удалить</a>
+                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.NewsId" class="btn btn-danger">Удалить</a>
                         </div>
                     </div>
                 </div>

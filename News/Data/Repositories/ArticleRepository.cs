@@ -64,5 +64,17 @@ namespace News.Data.Repositories
             _articles.Remove(ar);
             
         }
+        public async Task<IList<Article>> AddArticleAsync(ArticleModel model)
+        {
+
+            _articles.Add(new Article
+            {
+                Id = model.NewsId,
+               Body=model.NewsText,
+               Name=model.NewsHeader
+                
+            }); 
+            return await Task.FromResult(_articles);
+        }
     }
 }
