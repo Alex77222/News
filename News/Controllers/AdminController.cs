@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using News.Business.Services.Interfaces;
+using News.Models;
 using System.Threading.Tasks;
 
 namespace News.Controllers
@@ -20,9 +21,10 @@ namespace News.Controllers
             return View(await _aricleService.GetArticleByIdAsync(Id));
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(int NewsId,string NewsHeader,string NewsText)
+        public async Task<IActionResult> Edit(ArticleModel model)
         {
-            return View(await _aricleService.UpdateArticle(NewsId,NewsHeader,NewsText));
+            await _aricleService.UpdateArticle(model);
+            return RedirectToAction("Admin", await _aricleService.UpdateArticle(model));
         }
     }
 }

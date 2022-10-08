@@ -31,9 +31,9 @@ namespace News.Business.Services
 
         }
 
-        public async Task<IList<ArticleModel>> UpdateArticle(int NewsId, string NewsHeader, string NewsText)
+        public async Task<IList<ArticleModel>> UpdateArticle(ArticleModel model)
         {
-            var articles = await _articleRepository.SaveChangesAsync(NewsId,NewsHeader,NewsText);
+            var articles = await _articleRepository.SaveChangesAsync(model);
             return _mapper.Map<List<ArticleModel>>(articles);
         }
     }

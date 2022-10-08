@@ -6,7 +6,7 @@
     <div asp-validation-summary="All"></div>
     <div>
         <label class="text-center" id="NewsId" >Статья № @Model.NewsId</label>
-        <a name="NewsId">@Model.NewsId</a>
+        <textarea class="form-control"   name="NewsId">@Model.NewsId</textarea>
         <label class="text-center">Заголовок статьи</label>
         <div>
             <textarea class="form-control col-2" id="exampleFormControlTextarea1" rows="1" name="NewsHeader">@Model.NewsHeader</textarea>

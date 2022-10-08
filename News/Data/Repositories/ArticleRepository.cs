@@ -1,5 +1,6 @@
 ﻿using News.Data.Entities;
 using News.Data.Interfaces;
+using News.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,11 +48,14 @@ namespace News.Data.Repositories
             return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == Id));
         }
 
-        public async Task<IList<Article>> SaveChangesAsync(int Id, string Name, string Body)
+        public async Task<IList<Article>> SaveChangesAsync(ArticleModel model)
         {
-            var ar = _articles.FirstOrDefault(x => x.Id == Id);
-            ar.Name = Name;
-            ar.Body = Body;
+            var ar = _articles.FirstOrDefault(x => x.Id == model.NewsId);
+            ar.Id = model.NewsId;
+            ar.Name = model.NewsHeader;
+            ar.Body = model.NewsText;
+            _articles.Remove(_articles.FirstOrDefault(x => x.Id == model.NewsId));
+            _articles.Add(ar);
             return await Task.FromResult(_articles);
         }
     }
