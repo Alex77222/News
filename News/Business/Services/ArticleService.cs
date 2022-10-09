@@ -16,34 +16,34 @@ namespace News.Business.Services
             _articleRepository = articleRepository;
             _mapper = mapper;
         }
-        public async Task<IList<ArticleModel>> GetArticlesAsync()
+        public async Task<IList<ArticleViewModel>> GetArticlesAsync()
         {
             var articles = await _articleRepository.GetListAsync();
-            return _mapper.Map<List<ArticleModel>>(articles);
+            return _mapper.Map<List<ArticleViewModel>>(articles);
 
         }
-        public async Task<ArticleModel> GetArticleByIdAsync(int Id)
+        public async Task<ArticleViewModel> GetArticleByIdAsync(int Id)
         {
             var article = await _articleRepository.GetListByIdAsync(Id);
 
-            return _mapper.Map<ArticleModel>(article);
+            return _mapper.Map<ArticleViewModel>(article);
 
         }
 
-        public async Task<IList<ArticleModel>> UpdateArticle(ArticleModel model)
+        public async Task<IList<ArticleViewModel>> UpdateArticle(ArticleViewModel model)
         {
-            var articles = await _articleRepository.SaveChangesAsync(model);
-            return _mapper.Map<List<ArticleModel>>(articles);
+            var articles = await _articleRepository.UpdateArticleAsync(model);
+            return _mapper.Map<List<ArticleViewModel>>(articles);
         }
         public async Task DeleteArticleByIdAsync(int Id)
         {
             await _articleRepository.DeleteListByIdAsync(Id);
 
         }
-        public async Task<IList<ArticleModel>> AddArticleAsync(ArticleModel model)
+        public async Task<IList<ArticleViewModel>> AddArticleAsync(ArticleViewModel model)
         {
             var articles = await _articleRepository.AddArticleAsync(model);
-            return _mapper.Map<List<ArticleModel>>(articles);
+            return _mapper.Map<List<ArticleViewModel>>(articles);
 
         }
 

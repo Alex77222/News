@@ -48,7 +48,7 @@ namespace News.Data.Repositories
             return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == Id));
         }
 
-        public async Task<IList<Article>> SaveChangesAsync(ArticleModel model)
+        public async Task<IList<Article>> UpdateArticleAsync(ArticleViewModel model)
         {
             var ar = _articles.FirstOrDefault(x => x.Id == model.NewsId);
             ar.Id = model.NewsId;
@@ -64,7 +64,7 @@ namespace News.Data.Repositories
             _articles.Remove(ar);
             
         }
-        public async Task<IList<Article>> AddArticleAsync(ArticleModel model)
+        public async Task<IList<Article>> AddArticleAsync(ArticleViewModel model)
         {
 
             _articles.Add(new Article
