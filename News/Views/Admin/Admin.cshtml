@@ -1,7 +1,31 @@
-﻿
+﻿@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Admin";
 }
-
-<h1>Admin</h1>
-
+<a asp-controller="Admin" asp-action="Add" class="btn btn-success">Добавить статью</a>
+<div class="container-fluid container-xxl">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="card ">
+                <div class="card-header">
+                    @item.NewsId
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="card-title">@item.NewsHeader</h5>
+                        <div class="col-5 col-xxl-2 col-xl-2 col-lg-2 col-">
+                            <img src="~/images/1.jpg" class="rounded float-start" alt="Sample Photo" width="150px" />
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text">@item.NewsText</p>
+                            <a asp-controller="Home" asp-action="Article" asp-route-id="@item.NewsId" class="btn btn-primary">Go somewhere</a>
+                            <a asp-controller="Admin" asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-success">Изменить</a>
+                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.NewsId" class="btn btn-danger">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -1,15 +1,15 @@
 ﻿using News.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace News.Business.Services.Interfaces
 {
     public interface IArticleService
     {
-        public Task<IList<ArticleModel>> GetArticlesAsync();
-        public Task<ArticleModel> GetArticleByIdAsync(int Id);
-
+        public Task<IList<ArticleViewModel>> GetArticlesAsync();
+        public Task<ArticleViewModel> GetArticleByIdAsync(int Id); 
+        public Task<IList<ArticleViewModel>> UpdateArticle(ArticleViewModel model);
+        public Task DeleteArticleByIdAsync(int Id);
+        public Task<IList<ArticleViewModel>> AddArticleAsync(ArticleViewModel model);
     }
 }

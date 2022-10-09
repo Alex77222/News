@@ -1,8 +1,9 @@
 ﻿using News.Data.Entities;
 using News.Data.Interfaces;
+using News.Models;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace News.Data.Repositories
 {
@@ -12,7 +13,7 @@ namespace News.Data.Repositories
 
         public ArticleRepository()
         {
-            _articles= new List<Article>()
+            _articles = new List<Article>()
             {
                 new Article
                 {
@@ -45,6 +46,35 @@ namespace News.Data.Repositories
         public async Task<Article> GetListByIdAsync(int Id)
         {
             return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == Id));
+        }
+
+        public async Task<IList<Article>> UpdateArticleAsync(ArticleViewModel model)
+        {
+            var ar = _articles.FirstOrDefault(x => x.Id == model.NewsId);
+            ar.Id = model.NewsId;
+            ar.Name = model.NewsHeader;
+            ar.Body = model.NewsText;
+            _articles.Remove(_articles.FirstOrDefault(x => x.Id == model.NewsId));
+            _articles.Add(ar);
+            return await Task.FromResult(_articles);
+        }
+        public async Task DeleteListByIdAsync(int Id)
+        {
+            var ar = _articles.FirstOrDefault(x => x.Id == Id);
+            _articles.Remove(ar);
+            
+        }
+        public async Task<IList<Article>> AddArticleAsync(ArticleViewModel model)
+        {
+
+            _articles.Add(new Article
+            {
+                Id = model.NewsId,
+               Body=model.NewsText,
+               Name=model.NewsHeader
+                
+            }); 
+            return await Task.FromResult(_articles);
         }
     }
 }
