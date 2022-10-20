@@ -1,5 +1,4 @@
-﻿
-namespace News.Data.Entities
+﻿namespace News.Data.Entities
 {
     public class Article
     {

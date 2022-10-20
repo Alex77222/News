@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace News.Data.Models
+﻿namespace News.Data.Models
 {
     public class ArticleReader
     {
