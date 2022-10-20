@@ -10,7 +10,7 @@ namespace News.Business.Mapper.Profiles
         {
             CreateMap<Article, ArticleViewModel>()
                 .ForMember(dest => dest.NewsId, opt => opt.MapFrom(x => x.Id))
-                .ForMember(dest => dest.NewsHeader, opt => opt.MapFrom(x => x.Name))
+                .ForMember(dest => dest.NewsHeader, opt => opt.MapFrom(x => x.Header))
                 .ForMember(dest => dest.NewsText, opt => opt.MapFrom(x => x.Body));
         }
     }

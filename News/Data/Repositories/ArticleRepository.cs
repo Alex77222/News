@@ -19,37 +19,37 @@ namespace News.Data.Repositories
 
         protected override string GetQueryForUpdate(Article entity, string queryRaw)
         {
-            return string.Format(queryRaw, entity.Name, entity.Id, entity.Body);
+            return string.Format(queryRaw, entity.Header, entity.Id, entity.Body);
         }
 
         protected override IList<Article> ReadDataAsync(SqlDataReader reader)
         {
-            var artilce = new List<ArticleReader>();
+            var artilce = new List<Article>();
             while (reader.Read())
             {
-                artilce.Add(new ArticleReader
+                artilce.Add(new Article
                 {
-                    ArticleId = Convert.ToInt32((reader["ArticleId"].ToString() ?? string.Empty)),
-                    ArticleHeader = reader["ArticleHeader"].ToString() ?? string.Empty,
-                    ArticleBody = reader["ArticleBody"].ToString() ?? string.Empty,
+                    Id = Convert.ToInt32((reader["Id"].ToString() ?? string.Empty)),
+                    Header = reader["Header"].ToString() ?? string.Empty,
+                    Body = reader["Body"].ToString() ?? string.Empty,
                 });
 
             }
             return GetArticles(artilce);
         }
 
-        private IList<Article> GetArticles(IList<ArticleReader> articleReaders)
+        private IList<Article> GetArticles(IList<Article> article)
         {
-            var articles = articleReaders.GroupBy(x => x.ArticleId).Select(GetArticle).ToList(); // ошибка в Seletc пока пытаюсь решить
+            var articles = article.GroupBy(x => x.Id).Select().ToList(); // ошибка в Seletc пока пытаюсь решить
             return articles;
         }
-        private Article GetArticle(IList<ArticleReader> articleReaders)
+        private Article GetArticle(IList<Article> article)
         {
             var articles = new Article
             {
-                Id = articleReaders.First().ArticleId,
-                Name = articleReaders.First().ArticleHeader,
-                Body = articleReaders.First().ArticleBody,
+                Id = article.First().Id,
+                Header = article.First().Header,
+                Body = article.First().Body,
             };
             return articles;
 

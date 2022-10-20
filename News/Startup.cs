@@ -17,7 +17,7 @@ namespace News
         {
 
             services.AddAutoMapper(typeof(Startup)); 
-            services.AddScoped<IArticleRepository,ArticleRepository>();
+            services.AddScoped<ArticleRepository>();
             services.AddScoped<IArticleService,ArticleService>();
             services.AddMvc();
             
