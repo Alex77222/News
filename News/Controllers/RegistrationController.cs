@@ -15,9 +15,8 @@ namespace News.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string Login, string Password)
+        public IActionResult Index(string login, string password)
         {
-
             return View();
         }
     }

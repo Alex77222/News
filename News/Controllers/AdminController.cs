@@ -7,32 +7,32 @@ namespace News.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IArticleService _aricleService;
-        public AdminController(IArticleService article)
+        private readonly IArticleService _articleService;
+        public AdminController(IArticleService articleservice)
         {
-            _aricleService = article;
+            _articleService = articleservice;
         }
 
         public async Task<IActionResult> Admin()
         {
-            return View(await _aricleService.GetArticlesAsync());
+            return View(await _articleService.GetArticlesAsync());
         }
 
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<IActionResult> Delete(int id)
         {
-            await _aricleService.DeleteArticleByIdAsync(Id);
+            await _articleService.DeleteArticleByIdAsync(id);
             return RedirectToAction("Admin");
         }
         public async Task<IActionResult> Edit(int id)
         {
-            return View(await _aricleService.GetArticleByIdAsync(id));
+            return View(await _articleService.GetArticleByIdAsync(id));
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(ArticleViewModel model)
         {
-            await _aricleService.UpdateArticle(model);
-            return RedirectToAction("Admin", await _aricleService.UpdateArticle(model));
+            await _articleService.UpdateArticle(model);
+            return RedirectToAction("Admin");
         }
 
         public  IActionResult Add()
@@ -43,8 +43,8 @@ namespace News.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ArticleViewModel model)
         {
-            await _aricleService.AddArticleAsync(model);
-            return RedirectToAction("Admin", await _aricleService.AddArticleAsync(model));
+            await _articleService.AddArticleAsync(model);
+            return RedirectToAction("Admin");
         }
     }
 }
