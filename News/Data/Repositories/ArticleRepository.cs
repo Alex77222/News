@@ -14,7 +14,7 @@ namespace News.Data.Repositories
         { }
         protected override string GetQueryForInsert(Article entity, string queryRaw)
         {
-            throw new System.NotImplementedException();
+           return string.Format(queryRaw, entity.Header, entity.Id.ToString(), entity.Body);
         }
 
         protected override string GetQueryForUpdate(Article entity, string queryRaw)
@@ -35,24 +35,7 @@ namespace News.Data.Repositories
                 });
 
             }
-            return GetArticles(artilce);
-        }
-
-        private IList<Article> GetArticles(IList<Article> article)
-        {
-            var articles = article.GroupBy(x => x.Id).Select().ToList(); // ошибка в Seletc пока пытаюсь решить
-            return articles;
-        }
-        private Article GetArticle(IList<Article> article)
-        {
-            var articles = new Article
-            {
-                Id = article.First().Id,
-                Header = article.First().Header,
-                Body = article.First().Body,
-            };
-            return articles;
-
+            return artilce;
         }
     }
 }

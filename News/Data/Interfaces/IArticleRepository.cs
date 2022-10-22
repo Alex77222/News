@@ -9,8 +9,8 @@ namespace News.Data.Interfaces
     {
         public Task<IList<Article>> GetListAsync();
         public Task<Article> GetListByIdAsync(int Id);
-        public Task<IList<Article>> UpdateArticleAsync(ArticleViewModel   model);
+        public Task<IList<Article>> UpdateArticleAsync(Article model);
         public Task DeleteListByIdAsync(int Id);
-        public Task<IList<Article>> AddArticleAsync(ArticleViewModel model);
+        public Task<IList<Article>> AddArticleAsync(Article model);
     }
 }
