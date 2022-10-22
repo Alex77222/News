@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using News.Business.Mapper.Profiles;
 using News.Business.Services;
 using News.Business.Services.Interfaces;
-using News.Data.Interfaces;
 using News.Data.Repositories;
 
 namespace News

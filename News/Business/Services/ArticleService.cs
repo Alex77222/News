@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using News.Business.Services.Interfaces;
 using News.Data.Entities;
-using News.Data.Interfaces;
 using News.Data.Repositories;
 using News.Models;
 using System.Collections.Generic;
@@ -32,7 +31,7 @@ namespace News.Business.Services
 
         }
 
-        public async Task<IList<ArticleViewModel>> UpdateArticle(Article model)
+        public async Task<IList<ArticleViewModel>> UpdateArticle(ArticleViewModel model)
         {
             var articles = await _articleRepository.UpdateAsync(model);
             return _mapper.Map<List<ArticleViewModel>>(articles);
@@ -42,13 +41,12 @@ namespace News.Business.Services
             await _articleRepository.DeleteAsync(Id);
 
         }
-        public async Task<IList<ArticleViewModel>> AddArticleAsync(Article model)
+        public async Task<IList<ArticleViewModel>> AddArticleAsync(ArticleViewModel model)
         {
-            var articles = await _articleRepository.AddAsync(model);
-            return _mapper.Map<List<ArticleViewModel>>(articles);
+           var articles =  _mapper.Map<List<ArticleViewModel>>(model);
+           return await _articleRepository.AddAsync(articles);
+            
 
         }
-
-
     }
 }
