@@ -19,6 +19,7 @@ namespace News.Business.Services
         }
         public async Task<IList<ArticleViewModel>> GetArticlesAsync()
         {
+            
             var articles = await _articleRepository.GetListAsync();
             return _mapper.Map<List<ArticleViewModel>>(articles);
 
