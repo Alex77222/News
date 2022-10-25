@@ -28,7 +28,7 @@ namespace News.Data.Repositories
 
             var reader = await cmd.ExecuteReaderAsync();
             var entities = ReadDataAsync(reader);
-            sqlConnection.Close();  
+            sqlConnection.Close();
             return entities;
         }
         public async Task<TEntity?> GetByIdAsync(object id)

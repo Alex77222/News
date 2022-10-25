@@ -1,19 +1,18 @@
-﻿@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
-@model News.Models.ArticleViewModel
+﻿@model News.Models.ArticleViewModel
 @{
     ViewData["Title"] = "Edit";
 }
-<form asp-action="Edit" asp-controller="Admin" asp-route-id="@Model.NewsId"> 
+<form asp-action="Edit" asp-controller="Admin" asp-route-id="@Model.Id"> 
     <div>
         <label class="text-center">Заголовок статьи</label>
         <div>
-            <textarea class="form-control" type="text" rows="1"  asp-for="NewsHeader"></textarea>
+            <textarea class="form-control" type="text" rows="1"  asp-for="Header"></textarea>
         </div>
     </div>
     <div>
         <div class="mb-3">
             <label  class="form-label">Текст статьи</label>
-            <textarea class="form-control" type="text" rows="6"  asp-for="NewsText"></textarea>
+            <textarea class="form-control" type="text" rows="6"  asp-for="Text"></textarea>
         </div>
     </div>
     <div>

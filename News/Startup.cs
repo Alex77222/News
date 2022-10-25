@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using News.Business.Mapper.Profiles;
 using News.Business.Services;
 using News.Business.Services.Interfaces;
 using News.Data.Repositories;
@@ -15,25 +14,25 @@ namespace News
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddAutoMapper(typeof(Startup)); 
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ArticleRepository>();
-            services.AddScoped<IArticleService,ArticleService>();
+            services.AddScoped<IArticleService, ArticleService>();
             services.AddMvc();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
+
             app.UseStaticFiles();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-            endpoints.MapControllerRoute(
-                name: "Default",
-                pattern: "{controller=Home}/{action=Index}/{Id?}");
-                  
+                endpoints.MapControllerRoute(
+                    name: "Default",
+                    pattern: "{controller=Home}/{action=Index}/{Id?}");
+
             });
         }
     }

@@ -19,7 +19,7 @@ namespace News.Business.Services
         }
         public async Task<IList<ArticleViewModel>> GetArticlesAsync()
         {
-            
+
             var articles = await _articleRepository.GetListAsync();
             return _mapper.Map<List<ArticleViewModel>>(articles);
 
@@ -36,7 +36,7 @@ namespace News.Business.Services
         {
             var articles = _mapper.Map<Article>(model);
             await _articleRepository.UpdateAsync(articles);
-           
+
         }
         public async Task DeleteArticleByIdAsync(int id)
         {
@@ -45,8 +45,8 @@ namespace News.Business.Services
         }
         public async Task AddArticleAsync(ArticleViewModel model)
         {
-           var articles = _mapper.Map<Article>(model);
-           await _articleRepository.AddAsync(articles);
+            var articles = _mapper.Map<Article>(model);
+            await _articleRepository.AddAsync(articles);
         }
     }
 }
