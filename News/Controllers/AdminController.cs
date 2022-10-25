@@ -31,6 +31,7 @@ namespace News.Controllers
         [HttpPost]
         public async Task<IActionResult> EditAsync(ArticleViewModel model)
         {
+            
             await _articleService.UpdateArticle(model);
             return RedirectToAction("Admin");
         }
