@@ -28,6 +28,7 @@ namespace News.Data.Repositories
 
             var reader = await cmd.ExecuteReaderAsync();
             var entities = ReadDataAsync(reader);
+            sqlConnection.Close();  
             return entities;
         }
         public async Task<TEntity?> GetByIdAsync(object id)
@@ -42,7 +43,7 @@ namespace News.Data.Repositories
             var reader = await cmd.ExecuteReaderAsync();
 
             var entities = ReadDataAsync(reader);
-
+            sqlConnection.Close();
             return entities.FirstOrDefault();
         }
 
@@ -56,6 +57,7 @@ namespace News.Data.Repositories
             sqlConnection.Open();
 
             await cmd.ExecuteReaderAsync();
+            sqlConnection.Close();
         }
 
         public async Task AddAsync(TEntity entity)

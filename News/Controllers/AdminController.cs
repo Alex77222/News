@@ -18,7 +18,7 @@ namespace News.Controllers
             return View(await _articleService.GetArticlesAsync());
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             await _articleService.DeleteArticleByIdAsync(id);
             return RedirectToAction("Admin");
@@ -29,19 +29,19 @@ namespace News.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ArticleViewModel model)
+        public async Task<IActionResult> EditAsync(ArticleViewModel model)
         {
             await _articleService.UpdateArticle(model);
             return RedirectToAction("Admin");
         }
 
-        public  IActionResult Add()
+        public IActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ArticleViewModel model)
+        public async Task<IActionResult> AddAsync(ArticleViewModel model)
         {
             await _articleService.AddArticleAsync(model);
             return RedirectToAction("Admin");

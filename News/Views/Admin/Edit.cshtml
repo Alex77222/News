@@ -1,21 +1,23 @@
-﻿
+﻿@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Edit";
 }
-<form method="post">
+<form method="post" action="~/Admin/Edit">
     <div asp-validation-summary="All"></div>
     <div>
-        <label class="text-center" id="NewsId" >Статья № @Model.NewsId</label>
-        <textarea class="form-control"   name="NewsId">@Model.NewsId</textarea>
+        <div> 
+            <label class="text-center">Статья №</label>
+            <input name="NewsId" value="@Model.NewsId" readonly="readonly"></input>
+        </div>
         <label class="text-center">Заголовок статьи</label>
         <div>
-            <textarea class="form-control col-2" id="exampleFormControlTextarea1" rows="1" name="NewsHeader">@Model.NewsHeader</textarea>
+            <textarea class="form-control col-2" id="exampleFormControlTextarea1" rows="1" name="NewsHeader" >@Model.NewsHeader</textarea>
         </div>
     </div>
     <div>
         <div class="mb-3">
             <label  class="form-label">Текст статьи</label>
-            <textarea class="form-control"  rows="6" name="NewsText">@Model.NewsText</textarea>
+            <textarea class="form-control"  rows="6"  name="NewsText">@Model.NewsText</textarea>
         </div>
     </div>
     <div>
