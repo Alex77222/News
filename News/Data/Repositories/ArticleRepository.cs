@@ -1,10 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using News.Data.Entities;
-using News.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace News.Data.Repositories
 {
@@ -14,12 +12,12 @@ namespace News.Data.Repositories
         { }
         protected override string GetQueryForInsert(Article entity, string queryRaw)
         {
-           return string.Format(queryRaw, entity.Header, entity.Id.ToString(), entity.Body);
+            return string.Format(queryRaw, entity.Header, entity.Body);
         }
 
         protected override string GetQueryForUpdate(Article entity, string queryRaw)
         {
-            return string.Format(queryRaw, entity.Header, entity.Id, entity.Body);
+            return string.Format(queryRaw, entity.Header, entity.Body, entity.Id);
         }
 
         protected override IList<Article> ReadDataAsync(SqlDataReader reader)

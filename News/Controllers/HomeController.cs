@@ -7,18 +7,18 @@ namespace News.Controllers
     public class HomeController : Controller
     {
         private readonly IArticleService _aricleService;
-        public HomeController(IArticleService article)
+        public HomeController(IArticleService articleService)
         {
-            _aricleService = article;
+            _aricleService = articleService;
         }
         public async Task<IActionResult> Index()
         {
             return View(await _aricleService.GetArticlesAsync());
         }
 
-        public async Task<IActionResult> Article(int Id)
+        public async Task<IActionResult> Article(int id)
         {
-            return View(await _aricleService.GetArticleByIdAsync(Id));
+            return View(await _aricleService.GetArticleByIdAsync(id));
         }
 
     }

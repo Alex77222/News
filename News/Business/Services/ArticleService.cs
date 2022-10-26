@@ -19,34 +19,34 @@ namespace News.Business.Services
         }
         public async Task<IList<ArticleViewModel>> GetArticlesAsync()
         {
+
             var articles = await _articleRepository.GetListAsync();
             return _mapper.Map<List<ArticleViewModel>>(articles);
 
         }
-        public async Task<ArticleViewModel> GetArticleByIdAsync(int Id)
+        public async Task<ArticleViewModel> GetArticleByIdAsync(int id)
         {
-            var article = await _articleRepository.GetByIdAsync(Id);
+            var article = await _articleRepository.GetByIdAsync(id);
 
             return _mapper.Map<ArticleViewModel>(article);
 
         }
 
-        public async Task<IList<ArticleViewModel>> UpdateArticle(ArticleViewModel model)
+        public async Task UpdateArticle(ArticleViewModel model)
         {
-            var articles = await _articleRepository.UpdateAsync(model);
-            return _mapper.Map<List<ArticleViewModel>>(articles);
-        }
-        public async Task DeleteArticleByIdAsync(int Id)
-        {
-            await _articleRepository.DeleteAsync(Id);
+            var articles = _mapper.Map<Article>(model);
+            await _articleRepository.UpdateAsync(articles);
 
         }
-        public async Task<IList<ArticleViewModel>> AddArticleAsync(ArticleViewModel model)
+        public async Task DeleteArticleByIdAsync(int id)
         {
-           var articles =  _mapper.Map<List<ArticleViewModel>>(model);
-           return await _articleRepository.AddAsync(articles);
-            
+            await _articleRepository.DeleteAsync(id);
 
+        }
+        public async Task AddArticleAsync(ArticleViewModel model)
+        {
+            var articles = _mapper.Map<Article>(model);
+            await _articleRepository.AddAsync(articles);
         }
     }
 }
