@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace News.Data.Repositories
 {
-    public class UserRepository : BaseRepository<Article>
+    public class UserRepository : BaseRepository<User>
     {
         public UserRepository(IConfiguration configuration) : base(configuration)
         { }
-        protected override string GetQueryForInsert(Article entity, string queryRaw)
+        protected override string GetQueryForInsert(User entity, string queryRaw)
         {
             return string.Format(queryRaw, entity.Header, entity.Body);
         }
@@ -20,7 +20,7 @@ namespace News.Data.Repositories
             return string.Format(queryRaw, entity.Header, entity.Body, entity.Id);
         }
 
-        protected override IList<Article> ReadDataAsync(SqlDataReader reader)
+        protected override IList<User> ReadDataAsync(SqlDataReader reader)
         {
             var artilce = new List<Article>();
             while (reader.Read())
