@@ -7,14 +7,18 @@ namespace News.Data
         public RoleRepository Roles { get; set; }
         public UserRepository Users { get; set; }
         public UserRolesRepository UserRoles { get; set; }
+        public ArticleRepository Articles { get; set; }
         public UnitOfWork(
             UserRepository userRepository,
             RoleRepository roleRepasitory,
-            UserRolesRepository userRolesRepasitory)
+            UserRolesRepository userRolesRepasitory,
+            ArticleRepository articles)
         {
+            Articles = articles;
             Roles = roleRepasitory;
             Users = userRepository;
             UserRoles = userRolesRepasitory;
+            Articles = articles;
         }
 
 

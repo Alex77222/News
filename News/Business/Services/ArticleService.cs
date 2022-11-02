@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using News.Business.Services.Interfaces;
+using News.Data;
 using News.Data.Entities;
 using News.Data.Repositories;
 using News.Models;
@@ -10,23 +11,23 @@ namespace News.Business.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly ArticleRepository _articleRepository;
+        private readonly UnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public ArticleService(ArticleRepository articleRepository, IMapper mapper)
+        public ArticleService(UnitOfWork unitOfWork, IMapper mapper)
         {
-            _articleRepository = articleRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
         public async Task<IList<ArticleViewModel>> GetArticlesAsync()
         {
 
-            var articles = await _articleRepository.GetListAsync();
+            var articles = await _unitOfWork.Articles.GetListAsync();
             return _mapper.Map<List<ArticleViewModel>>(articles);
 
         }
         public async Task<ArticleViewModel> GetArticleByIdAsync(int id)
         {
-            var article = await _articleRepository.GetByIdAsync(id);
+            var article = await _unitOfWork.Articles.GetByIdAsync(id);
 
             return _mapper.Map<ArticleViewModel>(article);
 
@@ -35,18 +36,18 @@ namespace News.Business.Services
         public async Task UpdateArticle(ArticleViewModel model)
         {
             var articles = _mapper.Map<Article>(model);
-            await _articleRepository.UpdateAsync(articles);
+            await _unitOfWork.Articles.UpdateAsync(articles);
 
         }
         public async Task DeleteArticleByIdAsync(int id)
         {
-            await _articleRepository.DeleteAsync(id);
+            await _unitOfWork.Articles.DeleteAsync(id);
 
         }
         public async Task AddArticleAsync(ArticleViewModel model)
         {
             var articles = _mapper.Map<Article>(model);
-            await _articleRepository.AddAsync(articles);
+            await _unitOfWork.Articles.AddAsync(articles);
         }
     }
 }
