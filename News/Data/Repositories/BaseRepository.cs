@@ -16,8 +16,8 @@ namespace News.Data.Repositories
         protected BaseRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
-            var bdName = typeof(TEntity).Name;
-            _sqlQuery = configuration.GetSection(bdName).Get<SqlQuery>();
+            var dbName = typeof(TEntity).Name;
+            _sqlQuery = configuration.GetSection(dbName).Get<SqlQuery>();
         }
         public async Task<IList<TEntity>> GetListAsync()
         {
@@ -82,6 +82,18 @@ namespace News.Data.Repositories
             sqlConnection.Open();
 
             await cmd.ExecuteReaderAsync();
+        }
+
+        public async Task<TEntity?> GetSingleAsync(object parameter)
+        {
+            var query = string.Format(_sqlQuery.GetSingle, parameter);
+            await using var sqlConnection = new SqlConnection(_connectionString);
+            var cmd = new SqlCommand(query, sqlConnection);
+            cmd.CommandType = CommandType.Text;
+            sqlConnection.Open();
+            var reader = await cmd.ExecuteReaderAsync();
+            var entities = ReadDataAsync(reader);
+            return entities.FirstOrDefault();
         }
 
         protected abstract IList<TEntity> ReadDataAsync(SqlDataReader reader);
