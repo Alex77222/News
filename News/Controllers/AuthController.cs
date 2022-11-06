@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace News.Controllers
 {
-    public class RegistrationController : Controller
+    public class AuthController : Controller
     {
 
         private readonly IAuthService _authService;
-        public RegistrationController(IAuthService authService)
+        public AuthController(IAuthService authService)
         {
             _authService = authService;
         }
-        public IActionResult Registration()
+        public IActionResult Login()
         {
 
             return View();

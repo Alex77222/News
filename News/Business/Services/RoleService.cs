@@ -17,10 +17,10 @@ namespace News.Business.Services
             _db = unitOfWork;
         }
 
-        public async Task AddRoleByUserNameAsync(string userName)
+        public async Task AssignRoleByUserAsync(string userName, string roleName)
         {
             var userId = (await _db.Users.GetSingleAsync(userName)).Id;
-            var role = await _db.Roles.GetSingleAsync("user");
+            var role = await _db.Roles.GetSingleAsync(roleName);
 
             if (role == null)
             {
@@ -33,22 +33,12 @@ namespace News.Business.Services
             });
         }
 
-        public Task DeleteRoleAsync(string userName)
+        public Task RemoveRoleAsync(string userName)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IList<string>> GetLidtRoleAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IList<string>> GetRolesAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IList<string>> GetRolesByUserNameAsync(string userName)
+        public Task<IList<string>> GetListRoleAsync()
         {
             throw new System.NotImplementedException();
         }

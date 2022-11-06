@@ -5,10 +5,8 @@ namespace News.Business.Services.Interfaces
 {
     public interface IRoleService
     {
-        public Task DeleteRoleAsync(string userName);
-        public Task AddRoleByUserNameAsync(string userName);
-        public Task<IList<string>> GetLidtRoleAsync();
-        public Task<IList<string>> GetRolesAsync();
-        public Task<IList<string>> GetRolesByUserNameAsync(string userName);
+        public Task RemoveRoleAsync(string userName);
+        public Task AssignRoleByUserAsync(string userName,string role); 
+        public Task<IList<string>> GetListRoleAsync();
     }
 }

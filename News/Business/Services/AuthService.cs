@@ -19,10 +19,12 @@ namespace News.Business.Services
     {
         private readonly IConfiguration _configuration;
         private readonly UnitOfWork _db;
-        public AuthService(IConfiguration configuration, UnitOfWork unitOfWork)
+        private readonly IRoleService _roleService;
+        public AuthService(IConfiguration configuration, UnitOfWork unitOfWork,IRoleService roleService)
         {
             _configuration = configuration;
             _db = unitOfWork;
+            _roleService = roleService;
         }
 
         public async Task<string> LoginAsync(string userName, string password)
@@ -35,7 +37,7 @@ namespace News.Business.Services
             return GetJwtToken(user);
         }
 
-        public async Task RegistrationUserAsync(string userName, string password)
+        public async Task RegisterUserAsync(string userName, string password)
         {
             var existingUser = await _db.Users.GetSingleAsync(userName);
             if (existingUser != null)
@@ -49,20 +51,7 @@ namespace News.Business.Services
             };
 
             await _db.Users.AddAsync(user);
-
-
-            var userId = (await _db.Users.GetSingleAsync(user.Name)).Id;
-            var role = await _db.Roles.GetSingleAsync("user");
-
-            if (role == null) 
-            {
-                return;
-            }
-            await _db.UserRoles.AddAsync(new UserRoles
-            {
-                UserId = userId,
-                RoleId = role.Id,
-            });
+            await _roleService.AssignRoleByUserAsync(user.Name, "user");
         }
         private string GetJwtToken(User user)
         {
