@@ -15,15 +15,14 @@ namespace News.Controllers
         }
         public IActionResult Login()
         {
-
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAsync(UserViewModel user)
+        public async Task<IActionResult> LoginUserAsync(string userName, string password)
         {
-            await _authService.LoginAsync(user.UserName,user.HashPassword);
-            return View();
+            
+            return View(await _authService.LoginAsync(userName, password));
         }
     }
 }
