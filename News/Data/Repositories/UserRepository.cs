@@ -14,7 +14,7 @@ namespace News.Data.Repositories
         { }
         protected override string GetQueryForInsert(User entity, string queryRaw)
         {
-            return string.Format(queryRaw, entity.Id, entity.Name, entity.Password);
+            return string.Format(queryRaw, entity.Name, entity.Password);
         }
 
         protected override string GetQueryForUpdate(User entity, string queryRaw)
@@ -29,9 +29,9 @@ namespace News.Data.Repositories
             {
                 userResponses.Add(new UserResponse
                 {
-                    Id = Convert.ToInt32((reader["Id"].ToString() ?? string.Empty)),
+                    Id = Convert.ToInt32((reader["UserId"].ToString() ?? string.Empty)),
                     UserName = reader["UserName"].ToString() ?? string.Empty,
-                    Password = reader["HashPassword"].ToString() ?? string.Empty,
+                    Password = reader["Password"].ToString() ?? string.Empty,
                     RoleName = reader["RoleName"].ToString() ?? string.Empty,
                 });
 

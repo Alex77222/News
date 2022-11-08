@@ -1,4 +1,4 @@
-﻿namespace News.Data.Repositories
+﻿namespace News.Data.Entities
 {
     public class Role
     {

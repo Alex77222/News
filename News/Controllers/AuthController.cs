@@ -18,11 +18,18 @@ namespace News.Controllers
             return View();
         }
 
-        [HttpPost]
+      
         public async Task<IActionResult> LoginUserAsync(string userName, string password)
         {
             
-            return View(await _authService.LoginAsync(userName, password));
+            await _authService.LoginAsync(userName, password);
+            return RedirectToAction("Admin");
+        }
+        
+        public async Task<IActionResult> RegisterUserAsync(string userName, string password)
+        {
+            await _authService.RegisterUserAsync(userName,password);
+            return RedirectToAction("Login");
         }
     }
 }

@@ -49,7 +49,7 @@ namespace News.Business.Services
                 Name = userName,
                 Password = GetHash(password),
             };
-
+           
             await _db.Users.AddAsync(user);
             await _roleService.AssignRoleByUserAsync(user.Name, "user");
         }

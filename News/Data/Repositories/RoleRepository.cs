@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using News.Data.Entities;
 using System;
 using System.Collections.Generic;
 

@@ -10,18 +10,18 @@
             <form>
                 <div class="form-group">
                     <label for="exampleInputLogin">Login</label>
-                    <input type="login" class="form-control" id="exampleInputLogin" aria-describedby="loginHelp" name="Login">
+                    <input type="login" class="form-control" id="exampleInputLogin" aria-describedby="loginHelp" name="userName">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Пароль</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="Password">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Запомнить</label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Войти</button>
-                <button type="submit" class="btn btn-primary w-100" style="margin-top:30px">Регистрация</button>
+                <button type="submit" class="btn btn-primary w-100" asp-controller="Auth"  asp-action="LoginUser">Войти</button>
+                <button type="submit" class="btn btn-primary w-100" style="margin-top:30px" asp-controller="Auth" asp-action="RegisterUser">Регистрация</button>
             </form>
         </div>
     </div>
