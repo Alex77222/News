@@ -23,13 +23,13 @@ namespace News.Controllers
         {
             
             await _authService.LoginAsync(userName, password);
-            return RedirectToAction("Admin");
+            return RedirectPermanent("~/Home/Index");
         }
         
         public async Task<IActionResult> RegisterUserAsync(string userName, string password)
         {
             await _authService.RegisterUserAsync(userName,password);
-            return RedirectToAction("Login");
+            return RedirectPermanent("~/Home/Index");
         }
     }
 }

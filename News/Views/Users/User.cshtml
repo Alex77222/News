@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="container-fluid" style="margin-top: 15px">
+    <div class="row">
+        <div class="d-grid gap-2 col-3 mx-auto">
+        <a asp-controller="Admin" asp-action="Add" class="btn btn-success">Добавить статью</a>
+        <a asp-controller="Users" asp-action="User" class="btn btn-success">Пользователи</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid container-xxl col-4" style="margin-top:25px">
+    <table class="table text-center col-4">
+          <thead>
+            <tr>
+              <th scope="col-2">Логин</th>
+              <th scope="col-2">Роли</th>
+              <th scope="col-2">Действия</th>
+            </tr>
+          </thead>
+ @{
+        foreach (var item in Model)
+        {   
+          <tbody>
+            <tr>
+              <td>@item.UserName</td>
+           @{
+                  foreach (var items in item.Roles)
+                  {
+                        <td>@items</td>  
+                  }
+                        
+            }
+                    <td>
+                    <a asp-controller="Users" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Изменить роли</a>
+                    <a asp-controller="Users" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Удалить пользователя</a></td>
+            </tr>
+          </tbody>
+        
+        }
+    }
+    </table>
+</div>

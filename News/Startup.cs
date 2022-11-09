@@ -24,6 +24,7 @@ namespace News
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddMvc();
 
         }
