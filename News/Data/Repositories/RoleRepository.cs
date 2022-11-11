@@ -13,6 +13,7 @@ namespace News.Data.Repositories
         {
             
         }
+
         protected override IList<Role> ReadDataAsync(SqlDataReader reader)
         {
             var roles = new List<Role>();

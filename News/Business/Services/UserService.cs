@@ -30,5 +30,11 @@ namespace News.Business.Services
             var users = await _db.Users.GetListAsync();
             return _mapper.Map<List<UserViewModel>>(users);
         }
+
+        public async Task<IList<UserViewModel>> GetUserByIdAsync(int id)
+        {
+            var user = await _db.Users.GetByIdAsync(id);
+            return _mapper.Map<List<UserViewModel>>(user);
+        }
     }
 }

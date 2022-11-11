@@ -51,7 +51,7 @@ namespace News.Business.Services
             };
            
             await _db.Users.AddAsync(user);
-            await _roleService.AssignRoleByUserAsync(user.Name, "user");
+            await _roleService.AssignRoleByUserAsync(user.Name, "User");
         }
         private string GetJwtToken(User user)
         {

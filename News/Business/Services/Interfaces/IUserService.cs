@@ -10,5 +10,6 @@ namespace News.Business.Services.Interfaces
     {
        public Task<IList<UserViewModel>> GetListUserAsync();
        public Task DeleteUserListAsync(int id);
+       public Task<IList<UserViewModel>> GetUserByIdAsync(int id);
     }
 }

@@ -12,6 +12,8 @@ namespace News.Data.Repositories
     {
         public UserRepository(IConfiguration configuration) : base(configuration)
         { }
+   
+
         protected override string GetQueryForInsert(User entity, string queryRaw)
         {
             return string.Format(queryRaw, entity.Name, entity.Password);

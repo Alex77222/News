@@ -10,6 +10,8 @@ namespace News.Data.Repositories
     {
         public ArticleRepository(IConfiguration configuration) : base(configuration)
         { }
+
+
         protected override string GetQueryForInsert(Article entity, string queryRaw)
         {
             return string.Format(queryRaw, entity.Header, entity.Body);

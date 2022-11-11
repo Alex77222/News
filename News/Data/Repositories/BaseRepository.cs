@@ -72,10 +72,9 @@ namespace News.Data.Repositories
             await cmd.ExecuteReaderAsync();
         }
 
-        public async Task DeleteAsync(object id)
+        public async Task DeleteAsync(object parameters)
         {
-            var query = string.Format(_sqlQuery.Delete, id);
-
+            var query = GetQueryForDelete(parameters, _sqlQuery.Delete);
             await using var sqlConnection = new SqlConnection(_connectionString);
             var cmd = new SqlCommand(query, sqlConnection);
             cmd.CommandType = CommandType.Text;
@@ -101,6 +100,11 @@ namespace News.Data.Repositories
         protected abstract string GetQueryForUpdate(TEntity entity, string queryRaw);
 
         protected abstract string GetQueryForInsert(TEntity entity, string queryRaw);
+
+        protected virtual string GetQueryForDelete(object parameters, string queryRaw)
+        {
+            return string.Format(queryRaw, parameters);
+        }
     }
 }
 

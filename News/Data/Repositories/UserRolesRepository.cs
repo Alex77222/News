@@ -11,6 +11,12 @@ namespace News.Data.Repositories
         {
 
         }
+        protected override string GetQueryForDelete(object parameters, string queryRaw)
+        {
+            var userId = parameters.GetType().GetProperty("UserId").GetValue(parameters, null);
+            var roleId = parameters.GetType().GetProperty("RoleId").GetValue(parameters, null);
+            return string.Format(queryRaw, userId, roleId);
+        }
         protected override IList<UserRoles> ReadDataAsync(SqlDataReader reader)
         {
             return new List<UserRoles>();
