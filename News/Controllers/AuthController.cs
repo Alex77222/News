@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using News.Business.Services.Interfaces;
 using News.Models;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace News.Controllers
@@ -22,7 +25,8 @@ namespace News.Controllers
         public async Task<IActionResult> LoginUserAsync(string userName, string password)
         {
             
-            await _authService.LoginAsync(userName, password);
+            var claims =  await _authService.LoginAsync(userName, password);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claims));
             return RedirectPermanent("~/Home/Index");
         }
         

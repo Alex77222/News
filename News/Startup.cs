@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,11 @@ namespace News
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Auth/Login");
+                });
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ArticleRepository>();
             services.AddScoped<UserRepository>();
@@ -35,6 +40,8 @@ namespace News
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -42,6 +49,7 @@ namespace News
                     pattern: "{controller=Home}/{action=Index}/{Id?}");
 
             });
+
         }
     }
 }
