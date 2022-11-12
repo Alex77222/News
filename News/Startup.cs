@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using News.Business.Services;
 using News.Business.Services.Interfaces;
+using News.Data;
 using News.Data.Repositories;
 
 namespace News
@@ -16,7 +17,14 @@ namespace News
 
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ArticleRepository>();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<UserRolesRepository>();
+            services.AddScoped<RoleRepository>();
+            services.AddScoped<UnitOfWork>();
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddMvc();
 
         }

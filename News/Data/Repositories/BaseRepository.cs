@@ -16,8 +16,8 @@ namespace News.Data.Repositories
         protected BaseRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
-            var bdName = typeof(TEntity).Name;
-            _sqlQuery = configuration.GetSection(bdName).Get<SqlQuery>();
+            var dbName = typeof(TEntity).Name;
+            _sqlQuery = configuration.GetSection(dbName).Get<SqlQuery>();
         }
         public async Task<IList<TEntity>> GetListAsync()
         {
@@ -72,10 +72,9 @@ namespace News.Data.Repositories
             await cmd.ExecuteReaderAsync();
         }
 
-        public async Task DeleteAsync(object id)
+        public async Task DeleteAsync(object parameters)
         {
-            var query = string.Format(_sqlQuery.Delete, id);
-
+            var query = GetQueryForDelete(parameters, _sqlQuery.Delete);
             await using var sqlConnection = new SqlConnection(_connectionString);
             var cmd = new SqlCommand(query, sqlConnection);
             cmd.CommandType = CommandType.Text;
@@ -84,11 +83,28 @@ namespace News.Data.Repositories
             await cmd.ExecuteReaderAsync();
         }
 
+        public async Task<TEntity?> GetSingleAsync(object parameter)
+        {
+            var query = string.Format(_sqlQuery.GetSingle, parameter);
+            await using var sqlConnection = new SqlConnection(_connectionString);
+            var cmd = new SqlCommand(query, sqlConnection);
+            cmd.CommandType = CommandType.Text;
+            sqlConnection.Open();
+            var reader = await cmd.ExecuteReaderAsync();
+            var entities = ReadDataAsync(reader);
+            return entities.FirstOrDefault();
+        }
+
         protected abstract IList<TEntity> ReadDataAsync(SqlDataReader reader);
 
         protected abstract string GetQueryForUpdate(TEntity entity, string queryRaw);
 
         protected abstract string GetQueryForInsert(TEntity entity, string queryRaw);
+
+        protected virtual string GetQueryForDelete(object parameters, string queryRaw)
+        {
+            return string.Format(queryRaw, parameters);
+        }
     }
 }
 
