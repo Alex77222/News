@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using News.Business.Services.Interfaces;
 using News.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,27 +32,15 @@ namespace News.Controllers
             return RedirectToAction("User");
         }
 
-        public async Task<IActionResult> AddRoleAsync(string userName, string role)
+        public async Task<IActionResult> AddRoleAsync(string userName, List<string> roles)
         {
-            await _roleService.AssignRoleByUserAsync(userName, role);
+            foreach (var role in roles)
+            {
+                await _roleService.AssignRoleByUserAsync(userName, role);
+            }
+            
             return RedirectToAction("User");
         }
-        /* public async Task<IActionResult> AddRoleModernAsync(int id)
-         {
-             await _roleService.AssignRoleByUserAsync(id, "Moderator");
-             return RedirectToAction("User");
-         }
-         public async Task<IActionResult> AddRoleUserAsync(int id)
-         {
-             await _roleService.AssignRoleByUserAsync(id, "User");
-             return RedirectToAction("User");
-         }
-        *//* public async Task<IActionResult> RemoveRoleAdminAsync(int id)
-         {
-             await _roleService.RemoveRoleByUserAsync(id, "Admin");
-             return RedirectToAction("User");
-         }*/
-
-
+        
     }
 }

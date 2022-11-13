@@ -1,6 +1,7 @@
 ﻿using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using News.Business.Services.Interfaces;
@@ -55,6 +56,7 @@ namespace News.Business.Services
            
             await _db.Users.AddAsync(user);
             await _roleService.AssignRoleByUserAsync(user.Name, "User");
+            LoginAsync(user.Name, user.Password);
         }
 
         private ClaimsIdentity GetClaimsIdentity(User user)
@@ -81,6 +83,7 @@ namespace News.Business.Services
             return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
 
+       
     }
 
 

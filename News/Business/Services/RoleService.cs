@@ -17,22 +17,6 @@ namespace News.Business.Services
             _db = unitOfWork;
         }
 
-        public async Task AssignRoleByUserAsync(int id, string roleName)
-        {
-            var user = await _db.Users.GetByIdAsync(id);
-            var userId = (await _db.Users.GetSingleAsync(user.Name)).Id;
-            var role = await _db.Roles.GetSingleAsync(roleName);
-
-            if (role == null)
-            {
-                return;
-            }
-            await _db.UserRoles.AddAsync(new UserRoles
-            {
-                UserId = userId,
-                RoleId = role.Id,
-            });
-        }
         public async Task AssignRoleByUserAsync(string userName, string roleName)
         {
             var userId = (await _db.Users.GetSingleAsync(userName)).Id;

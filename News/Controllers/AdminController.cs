@@ -32,7 +32,11 @@ namespace News.Controllers
         [HttpPost]
         public async Task<IActionResult> EditAsync(ArticleViewModel model)
         {
+            if (!AuthorizeHelper.ContainsRoles(User, "Admin", "Moderator"))
+            {
+                return BadRequest();
 
+            }
             await _articleService.UpdateArticle(model);
             return RedirectToAction("Admin");
         }
