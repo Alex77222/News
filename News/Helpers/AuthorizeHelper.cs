@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.Identity.Client;
+using System.Linq;
 using System.Security.Claims;
 
 namespace News.Helpers
@@ -15,6 +16,11 @@ namespace News.Helpers
                 } 
             }
             return false;
+        }
+
+        public static string GetUserName(ClaimsPrincipal user)
+        {
+            return user.Identity.Name;
         }
     }
 }

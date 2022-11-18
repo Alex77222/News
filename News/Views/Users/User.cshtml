@@ -26,33 +26,33 @@
                 <tbody>
                         <form method="post">
                     <tr>
-                                <td><label >@user.UserName</label>
+                        <td><label >@user.UserName</label>
                                 
-                                <input type=hidden name="userName" value="@user.UserName"/></td>
+                        <input type=hidden name="userName" value="@user.UserName"/></td>
                         <td>  
                         
-                                @{
+                        @{
                                     
-                                        foreach (var role in Model.AllRoles)
-                                        {
-                                            if (user.Roles.Contains(role))
-                                            {
-                                            <input name="comingRoles" checked="false" type="checkbox" value="@role" />
+                                foreach (var role in Model.AllRoles)
+                                {
+                                    if (user.Roles.Contains(role))
+                                    {
+                                    <input name="comingRoles" checked="false" type="checkbox" value="@role" />
 
-                                            @role
+                                    @role
 
-                                            <br/>
+                                    <br/>
 
-                                            }
-                                            else
-                                            {
-                                                <input name="comingRoles" type="checkbox" value="@role"/>@role<br/>
+                                    }
+                                    else
+                                    {
+                                        <input name="comingRoles" type="checkbox" value="@role"/>@role<br/>
 
-                                            }
-                                        }
+                                    }
+                                }
                                             
 
-                                   }
+                            }
                                     
                                     
                                     
