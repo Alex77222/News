@@ -21,73 +21,50 @@
             </tr>
           </thead>
             @{
-            foreach (var user in Model.Users)
+            foreach (var user in Model.Users) 
             {   
                 <tbody>
-                    <tr>
-                        <td asp-for="userName">@user.UserName</td>
-                        <td>  
                         <form method="post">
+                    <tr>
+                                <td><label >@user.UserName</label>
+                                
+                                <input type=hidden name="userName" value="@user.UserName"/></td>
+                        <td>  
+                        
                                 @{
                                     
                                         foreach (var role in Model.AllRoles)
                                         {
-                                            foreach (var userRole in user.Roles)
+                                            if (user.Roles.Contains(role))
                                             {
-                                                if (userRole == role)
-                                                {
-                                                <input  name="roles" checked="false" type="checkbox" value="@role" />
+                                            <input name="comingRoles" checked="false" type="checkbox" value="@role" />
 
-                                                    @role
+                                            @role
 
-                                                    <br/>
-                                                    
-                                                }
-                                                else
-                                                {
-                                                    <input  name="roles"  type="checkbox" value="@role"/>
+                                            <br/>
 
-                                                    @role
-
-                                                    <br/>
-                                                    
-                                                }
                                             }
+                                            else
+                                            {
+                                                <input name="comingRoles" type="checkbox" value="@role"/>@role<br/>
 
+                                            }
                                         }
-                                    }
+                                            
+
+                                   }
                                     
                                     
-                        </form>
+                                    
+                        
+                        </td>     
+                        <td>       
+                                    <input asp-controller="Users" asp-action="UserUpdateRole"  type="submit" value="Сохранить" />
+                            <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Удалить пользователя</a>
                         </td>
-                                    
-@{
-    //<ul class="dropdown-menu">
-    //            <li></li>
-    //            <li><a class="dropdown-item" asp-controller="Users" asp-action="AddRoleModer"asp-route-id="@item.Id">Moderator</a></li>
-    //            <li><a class="dropdown-item" asp-controller="Users" asp-action="AddRoleUser" asp-route-id="@item.Id">User</a></li>
-    //</ul>
-}
-                                <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" style="margin-left:5px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Удалить роль
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" asp-controller="Users" asp-action="RemoveRoleAdmin" asp-route-id="@user.Id">Admin</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Users" asp-action="RemoveRoleModer"asp-route-id="@user.Id">Moderator</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Users" asp-action="RemoveRoleUser" asp-route-id="@user.Id">User</a></li>
-                                    </ul>
-                                            </div>
-                              
-                                        <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Удалить пользователя</a>
-
-
-
-                        </td>
-                                            </tr>
-                  </tbody>
-
+                        </tr>           
+                    </form>
+                </tbody>
             }
         }
     </table>

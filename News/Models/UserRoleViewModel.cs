@@ -8,5 +8,6 @@ namespace News.Models
         public IList<UserViewModel> Users { get; set; }
         public IList<string> AllRoles { get; set; }
         public bool IsCheecked { get; set; }
+        public string userName { get; set; }
     }
 }
