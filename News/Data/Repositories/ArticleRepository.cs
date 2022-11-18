@@ -14,7 +14,7 @@ namespace News.Data.Repositories
 
         protected override string GetQueryForInsert(Article entity, string queryRaw)
         {
-            return string.Format(queryRaw, entity.Header, entity.Body);
+            return string.Format(queryRaw, entity.Header, entity.Body, entity.UserId);
         }
 
         protected override string GetQueryForUpdate(Article entity, string queryRaw)
@@ -29,9 +29,15 @@ namespace News.Data.Repositories
             {
                 artilce.Add(new Article
                 {
-                    Id = Convert.ToInt32((reader["Id"].ToString() ?? string.Empty)),
+                    Id = Convert.ToInt32((reader["ArticleId"].ToString() ?? string.Empty)),
                     Header = reader["Header"].ToString() ?? string.Empty,
                     Body = reader["Body"].ToString() ?? string.Empty,
+                    UserId = Convert.ToInt32((reader["UserId"].ToString() ?? string.Empty)),
+                    User = new User 
+                    {
+                        Id = Convert.ToInt32((reader["UserId"].ToString() ?? string.Empty)),    
+                        Name = reader["UserName"].ToString() ?? string.Empty,    
+                    }
                 });
 
             }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using News.Business.Services.Interfaces;
+using News.Helpers;
 using News.Models;
 using System.Threading.Tasks;
 
@@ -31,7 +32,11 @@ namespace News.Controllers
         [HttpPost]
         public async Task<IActionResult> EditAsync(ArticleViewModel model)
         {
+            if (!AuthorizeHelper.ContainsRoles(User, "Admin", "Moderator"))
+            {
+                return BadRequest();
 
+            }
             await _articleService.UpdateArticle(model);
             return RedirectToAction("Admin");
         }
@@ -44,8 +49,14 @@ namespace News.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync(ArticleViewModel model)
         {
+            if (!AuthorizeHelper.ContainsRoles(User,"Admin", "Moderator"))
+            {
+                return BadRequest();
+                
+            }
             await _articleService.AddArticleAsync(model);
             return RedirectToAction("Admin");
+
         }
     }
 }

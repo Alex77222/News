@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using News.Helpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,9 +25,16 @@
                     <li class="nav-item">
                         <a asp-controller="Home" asp-action="Index" class="nav-link">Новости</a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="Admin" asp-action="Admin" class="nav-link">Блог</a>
-                    </li>
+                    @{
+                        if (AuthorizeHelper.ContainsRoles(User,"Admin", "Moderator"))
+                        {
+                                <li class="nav-item">
+                                    <a asp-controller="Admin" asp-action="Admin" class="nav-link">Админка</a>
+                                </li>
+                        }
+
+                    }
+                    
                     <li class="nav-item">
                         <a href="" class="nav-link">Про нас</a>
                     </li>
@@ -35,9 +43,28 @@
                     <input type="search" placeholder="Search" class="form-control me-2">
                     <button class="btn btn-outline-success">Search</button>
                 </form>
-                <form class="d-flex" style="margin-left:20px" asp-action="Login" asp-controller="Auth">
-                    <button class="btn btn-outline-success" >Вход</button>
-                </form>
+                @{
+                    if (User.Identity!=null && !string.IsNullOrEmpty(User.Identity.Name))
+                    {
+                        <form class="d-flex" style="margin-left:20px">
+                                <div class="dropdown">
+                                                <button class="btn btn-outline-success dropdown-toggle" style="margin-left:5px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                               @User.Identity.Name  
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Выход</a></li> 
+                                        </ul>
+                                </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <form class="d-flex" style="margin-left:20px" asp-action="Login" asp-controller="Auth">
+                            <button class="btn btn-outline-success" >Вход</button>
+                        </form>
+                    }
+                }
+               
             </div>
         </div>
     </nav>

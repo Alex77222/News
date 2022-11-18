@@ -1,4 +1,7 @@
 ﻿using Azure.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using News.Business.Services.Interfaces;
@@ -20,6 +23,7 @@ namespace News.Business.Services
         private readonly IConfiguration _configuration;
         private readonly UnitOfWork _db;
         private readonly IRoleService _roleService;
+
         public AuthService(IConfiguration configuration, UnitOfWork unitOfWork,IRoleService roleService)
         {
             _configuration = configuration;
@@ -27,14 +31,14 @@ namespace News.Business.Services
             _roleService = roleService;
         }
 
-        public async Task<string> LoginAsync(string userName, string password)
+        public async Task<ClaimsIdentity> LoginAsync(string userName, string password)
         {
             var user = await _db.Users.GetSingleAsync(userName);
             if (user == null || !user.Password.Equals(GetHash(password)))
             {
                 throw new AuthenticationFailedException("Incorrect user name or password");
             }
-            return GetJwtToken(user);
+            return GetClaimsIdentity(user);
         }
 
         public async Task RegisterUserAsync(string userName, string password)
@@ -52,13 +56,15 @@ namespace News.Business.Services
            
             await _db.Users.AddAsync(user);
             await _roleService.AssignRoleByUserAsync(user.Name, "User");
+            LoginAsync(user.Name, user.Password);
         }
-        private string GetJwtToken(User user)
+
+        private ClaimsIdentity GetClaimsIdentity(User user)
         {
+      
             var authClaims = new List<Claim>
             {
                 new (ClaimTypes.Name, user.Name),
-                new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
             foreach (var userRole in user.Roles!)
@@ -66,17 +72,8 @@ namespace News.Business.Services
                 authClaims.Add(new Claim(ClaimTypes.Role, userRole));
             }
 
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddDays(30),
-                claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new ClaimsIdentity(authClaims, "SystemNewsCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            
         }
 
         private static string GetHash(string text)
@@ -86,6 +83,7 @@ namespace News.Business.Services
             return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
 
+       
     }
 
 

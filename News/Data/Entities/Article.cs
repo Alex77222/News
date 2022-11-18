@@ -5,5 +5,7 @@
         public int Id { get; set; }
         public string Header { get; set; } = string.Empty;
         public string Body { get; set; } = string.Empty;
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

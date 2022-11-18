@@ -1,4 +1,5 @@
-﻿@{
+﻿@using News.Helpers
+@{
     ViewData["Title"] = "Add";
 }
 
@@ -6,7 +7,11 @@
 <form method="post">
 <div asp-validation-summary="All"></div>
 <div>
+        @{
+            var user = AuthorizeHelper.GetUserName(User);
+        }
     <label class="text-center">Заголовок статьи</label>
+    <input type=hidden name="Author" value="@user"/>
     <div>
         <textarea class="form-control col-2" id="exampleFormControlTextarea1" rows="1" name="Header"></textarea>
     </div>

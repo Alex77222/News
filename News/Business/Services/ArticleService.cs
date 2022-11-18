@@ -11,43 +11,44 @@ namespace News.Business.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly UnitOfWork _db;
         private readonly IMapper _mapper;
         public ArticleService(UnitOfWork unitOfWork, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _db = unitOfWork;
             _mapper = mapper;
         }
         public async Task<IList<ArticleViewModel>> GetArticlesAsync()
         {
-
-            var articles = await _unitOfWork.Articles.GetListAsync();
+            var articles = await _db.Articles.GetListAsync();
             return _mapper.Map<List<ArticleViewModel>>(articles);
 
         }
         public async Task<ArticleViewModel> GetArticleByIdAsync(int id)
         {
-            var article = await _unitOfWork.Articles.GetByIdAsync(id);
+            var article = await _db.Articles.GetByIdAsync(id);
 
             return _mapper.Map<ArticleViewModel>(article);
 
         }
 
-        public async Task UpdateArticle(ArticleViewModel model)
+        public async Task UpdateArticle(ArticleViewModel article)
         {
-            var articles = _mapper.Map<Article>(model);
-            await _unitOfWork.Articles.UpdateAsync(articles);
+            var articles = _mapper.Map<Article>(article);
+            await _db.Articles.UpdateAsync(articles);
 
         }
         public async Task DeleteArticleByIdAsync(int id)
         {
-            await _unitOfWork.Articles.DeleteAsync(id);
+            await _db.Articles.DeleteAsync(id);
 
         }
-        public async Task AddArticleAsync(ArticleViewModel model)
+        public async Task AddArticleAsync(ArticleViewModel article)
         {
-            var articles = _mapper.Map<Article>(model);
-            await _unitOfWork.Articles.AddAsync(articles);
+            var user = await _db.Users.GetSingleAsync(article.Author);
+            var articleEntity = _mapper.Map<Article>(article);
+            articleEntity.UserId=user.Id;
+            await _db.Articles.AddAsync(articleEntity);
         }
     }
 }
