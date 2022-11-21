@@ -39,16 +39,20 @@
                         <a href="" class="nav-link">Про нас</a>
                     </li>
                 </ul>
-                <form action="" class="d-flex">
-                    <input type="search" placeholder="Search" class="form-control me-2">
-                    <button class="btn btn-outline-success">Search</button>
-                </form>
+                <div class="row">
+                    <div class="col-8">
+                        <form action="" class="d-flex ">
+                        <input type="search" placeholder="Search" class="form-control me-2">
+                        <button class="btn btn-outline-success">Поиск</button>
+                        </form>
+                    </div>
+                    <div class="col-2">
                 @{
                     if (User.Identity!=null && !string.IsNullOrEmpty(User.Identity.Name))
                     {
                         <form class="d-flex" style="margin-left:20px">
                                 <div class="dropdown">
-                                                <button class="btn btn-outline-success dropdown-toggle" style="margin-left:5px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <button class="btn btn-outline-success dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                @User.Identity.Name  
                                         </button>
                                         <ul class="dropdown-menu">
@@ -59,12 +63,14 @@
                     }
                     else
                     {
-                        <form class="d-flex" style="margin-left:20px" asp-action="Login" asp-controller="Auth">
+                        <form class="d-flex"  asp-action="Login" asp-controller="Auth">
                             <button class="btn btn-outline-success" >Вход</button>
                         </form>
                     }
-                }
-               
+                 }
+                 </div>
+
+               </div>
             </div>
         </div>
     </nav>
