@@ -17,10 +17,10 @@ namespace News.Business.Services
             _db = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IList<ArticleViewModel>> GetArticlesAsync()
+        public async Task<IList<SmallArticleViewModel>> GetArticlesAsync()
         {
             var articles = await _db.Articles.GetListAsync();
-            return _mapper.Map<List<ArticleViewModel>>(articles);
+            return _mapper.Map<List<SmallArticleViewModel>>(articles);
 
         }
         public async Task<ArticleViewModel> GetArticleByIdAsync(int id)
@@ -50,11 +50,11 @@ namespace News.Business.Services
             await _db.Articles.AddAsync(articleEntity);
         }
 
-        public async Task<IList<ArticleViewModel>> GetArticleByUserName(string userName)
+        public async Task<IList<SmallArticleViewModel>> GetArticleByUserName(string userName)
         {
             var userId = (await _db.Users.GetSingleAsync(userName)).Id;
             var articles = await _db.Articles.GetByUserIdAsync(userId);
-            return _mapper.Map<List<ArticleViewModel>>(articles);
+            return _mapper.Map<List<SmallArticleViewModel>>(articles);
 
         }
     }
