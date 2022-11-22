@@ -2,7 +2,6 @@
 using News.Business.Services.Interfaces;
 using News.Data;
 using News.Data.Entities;
-using News.Data.Repositories;
 using News.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,10 +17,10 @@ namespace News.Business.Services
             _db = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IList<ArticleViewModel>> GetArticlesAsync()
+        public async Task<IList<SmallArticleViewModel>> GetArticlesAsync()
         {
             var articles = await _db.Articles.GetListAsync();
-            return _mapper.Map<List<ArticleViewModel>>(articles);
+            return _mapper.Map<List<SmallArticleViewModel>>(articles);
 
         }
         public async Task<ArticleViewModel> GetArticleByIdAsync(int id)
@@ -47,8 +46,16 @@ namespace News.Business.Services
         {
             var user = await _db.Users.GetSingleAsync(article.Author);
             var articleEntity = _mapper.Map<Article>(article);
-            articleEntity.UserId=user.Id;
+            articleEntity.UserId = user.Id;
             await _db.Articles.AddAsync(articleEntity);
+        }
+
+        public async Task<IList<SmallArticleViewModel>> GetArticleByUserName(string userName)
+        {
+            var userId = (await _db.Users.GetSingleAsync(userName)).Id;
+            var articles = await _db.Articles.GetByUserIdAsync(userId);
+            return _mapper.Map<List<SmallArticleViewModel>>(articles);
+
         }
     }
 }

@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Example";
+}
+
+<div class="container-fluid" style="margin-top:25px">
+    <h1 class="text-center">Примеры использования протокола TCP</h1>
+
+  </div>
+  <div class="container-fluid"style="margin-top:35px;padding-right:15px;padding-left:20px">
+      <div class="col-12 text-break text-start">
+          <h5 class="text-center">FTP</h5>
+          <h6 align="justify">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FTP используется для копирования файлов с сервера и на сервер, 
+          а также для получения списка файлов и каталогов на сервере. FTP — это протокол прикладного уровня, базирующийся на TCP.<br>
+          Команды FTP включаются в блок данных TCP-сообщения.
+
+Модель приложения с FTP-сервером и клиентом проиллюстрирована на следующем рисунке. Приложение-клиент представляет пользовательский интерфейс и 
+создает FTP-запрос в соответствии с запросом пользователя и спецификацией FTP. FTP-команда посылается приложению-серверу через TCP/IP, и интерпретатор
+на сервере соответственно интерпретирует FTP-команду. В зависимости от FTP-команды в FTP-ответе клиенту возвращается с сервера список файлов или конкретный файл:
+            
+          </h6>
+          <img src="~/images/2.jpg" class="rounded mx-auto d-block" alt="Sample Photo" width="1000px" style="margin-top:20px" />
+           <h5 class="text-center"style="margin-top:30px">HTTP — Hypertext Transfer Protocol</h5>
+          <h6 align="justify">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTTP — основной протокол, используемый Web-приложениями. 
+          Как и FTP, HTTP является надежным протоколом, и надежность его достигается благодаря использованию TCP. Как и FTP, 
+          HTTP также используется для передачи файлов через сеть. Но он в отличие от FTP обладает такими средствами, как кэширование, 
+          идентификация приложения-клиента, поддержка разных дополнений в формате MIME и т. д. Эти средства устанавливаются в заголовке HTTP.
+
+          </h6>
+          <img src="~/images/3.jpg" class="rounded mx-auto d-block" alt="Sample Photo" width="1000px" style="margin-top:20px"/>
+          <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+      </div>
+  </div>
