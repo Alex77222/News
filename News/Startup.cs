@@ -30,6 +30,7 @@ namespace News
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISearchService, SearchService>();
             services.AddMvc();
 
         }

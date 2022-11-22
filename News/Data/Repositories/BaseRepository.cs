@@ -109,6 +109,17 @@ namespace News.Data.Repositories
             var entities = ReadDataAsync(reader);
             return entities.FirstOrDefault();
         }
+        public async Task<IList<TEntity>> SearchAsync(string parameter)
+        {
+            var query = string.Format(_sqlQuery.Search, parameter);
+            await using var sqlConnection = new SqlConnection(_connectionString);
+            var cmd = new SqlCommand(query, sqlConnection);
+            cmd.CommandType = CommandType.Text;
+            sqlConnection.Open();
+            var reader = await cmd.ExecuteReaderAsync();
+            var entities = ReadDataAsync(reader);
+            return entities;
+        }
 
         protected abstract IList<TEntity> ReadDataAsync(SqlDataReader reader);
 

@@ -49,9 +49,9 @@
                 </ul>
                 <div class="row">
                     <div class="col-8">
-                        <form action="" class="d-flex ">
-                        <input type="search" placeholder="Search" class="form-control me-2">
-                        <button class="btn btn-outline-success">Поиск</button>
+                        <form  method="get" class="d-flex ">
+                        <input type="search" name="searchParameter" placeholder="Search" class="form-control me-2">
+                        <button asp-controller="Search" asp-action="Search" class="btn btn-outline-success">Поиск</button>
                         </form>
                     </div>
                     <div class="col-2">
