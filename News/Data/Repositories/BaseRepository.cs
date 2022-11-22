@@ -46,6 +46,21 @@ namespace News.Data.Repositories
             sqlConnection.Close();
             return entities.FirstOrDefault();
         }
+        public async Task<IList<TEntity>> GetByUserIdAsync(object id)
+        {
+            var query = string.Format(_sqlQuery.GetByUserId, id);
+
+            await using var sqlConnection = new SqlConnection(_connectionString);
+            var cmd = new SqlCommand(query, sqlConnection);
+            cmd.CommandType = CommandType.Text;
+            sqlConnection.Open();
+
+            var reader = await cmd.ExecuteReaderAsync();
+
+            var entities = ReadDataAsync(reader);
+            sqlConnection.Close();
+            return entities;
+        }
 
         public async Task UpdateAsync(TEntity entity)
         {

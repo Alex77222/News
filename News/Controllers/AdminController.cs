@@ -16,7 +16,16 @@ namespace News.Controllers
 
         public async Task<IActionResult> Admin()
         {
-            return View(await _articleService.GetArticlesAsync());
+            if (AuthorizeHelper.ContainsRoles(User, "Admin"))
+            {
+                return View(await _articleService.GetArticlesAsync());
+            }
+            else if (AuthorizeHelper.ContainsRoles(User, "Moderator"))
+            {
+                return View(await _articleService.GetArticleByUserName(User.Identity.Name));
+            }
+            return View();
+           
         }
 
         public async Task<IActionResult> DeleteAsync(int id)

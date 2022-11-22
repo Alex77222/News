@@ -20,7 +20,22 @@ namespace News.Controllers
         {
             return View(await _aricleService.GetArticleByIdAsync(id));
         }
-
+        public IActionResult History()
+        {
+            return View();
+        }
+        public IActionResult Teory()
+        {
+            return View();
+        }
+        public IActionResult Example()
+        {
+            return View();
+        }
+        public IActionResult Book()
+        {
+            return View();
+        }
     }
 
 }

@@ -11,9 +11,11 @@
 </div>
 <div class="container-fluid container-xxl">
     @{
+
         foreach (var item in Model)
         {
-                        <div class="card" style="margin-top: 15px">
+            int kol = item.Text.Lenght - 40;
+            <div class="card" style="margin-top: 15px">
                             <div class="card-body">
                                 <div class="row">
                                     <h5 class="card-title">@item.Header</h5>
@@ -21,7 +23,7 @@
                                         <img src="~/images/1.jpg" class="rounded float-start" alt="Sample Photo" width="150px" />
                                     </div>
                                     <div class="col-6">
-                                        <p class="card-text">@item.Text</p>
+                                        <p class="card-text">@item.Text.Substring(0,item.Text-kol)</p>
                                         <a asp-controller="Home" asp-action="Article" asp-route-id="@item.Id" class="btn btn-primary">Go somewhere</a>
                                         <a asp-controller="Admin" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Изменить</a>
                                         <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Удалить</a>

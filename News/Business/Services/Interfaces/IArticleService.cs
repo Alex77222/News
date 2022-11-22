@@ -8,6 +8,7 @@ namespace News.Business.Services.Interfaces
     {
         public Task<IList<ArticleViewModel>> GetArticlesAsync();
         public Task<ArticleViewModel> GetArticleByIdAsync(int id);
+        public Task<IList<ArticleViewModel>> GetArticleByUserName(string userName);
         public Task UpdateArticle(ArticleViewModel model);
         public Task DeleteArticleByIdAsync(int id);
         public Task AddArticleAsync(ArticleViewModel model);

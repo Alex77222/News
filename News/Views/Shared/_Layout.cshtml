@@ -25,6 +25,18 @@
                     <li class="nav-item">
                         <a asp-controller="Home" asp-action="Index" class="nav-link">Новости</a>
                     </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="History" class="nav-link">История</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="Teory" class="nav-link">Теория</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="Example" class="nav-link">Примеры использования</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="Book" class="nav-link">Источники</a>
+                    </li>
                     @{
                         if (AuthorizeHelper.ContainsRoles(User,"Admin", "Moderator"))
                         {
@@ -34,10 +46,6 @@
                         }
 
                     }
-                    
-                    <li class="nav-item">
-                        <a href="" class="nav-link">Про нас</a>
-                    </li>
                 </ul>
                 <div class="row">
                     <div class="col-8">
@@ -79,7 +87,7 @@
             @RenderBody()
         </div>
     </main>
-    <footer class="border-top border-3 fixed-bottom">
+   @* <footer class="border-top border-3 fixed-bottom">
         @if (IsSectionDefined("Footer"))
         {
             @RenderSection("Footer")
@@ -96,7 +104,7 @@
         }
         
 
-    </footer>
+    </footer>*@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
