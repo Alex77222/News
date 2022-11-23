@@ -1,11 +1,17 @@
-﻿@{
+﻿@using News.Helpers;
+@{
     ViewData["Title"] = "Admin";
 }
 <div class="container-fluid" style="margin-top: 15px">
     <div class="row">
         <div class="d-grid gap-2 col-3 mx-auto">
         <a asp-controller="Admin" asp-action="Add" class="btn btn-success">Добавить статью</a>
-        <a asp-controller="Users" asp-action="User" class="btn btn-success">Пользователи</a>
+            @{
+                if (AuthorizeHelper.ContainsRoles(User, "Admin"))
+                {
+                    <a asp-controller="Users" asp-action="User" class="btn btn-success">Пользователи</a>
+                }
+            }
         </div>
     </div>
 </div>
